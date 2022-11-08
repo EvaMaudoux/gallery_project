@@ -1,0 +1,29 @@
+{% block navbar %}
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Galerie Maudoux</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="navbar-collapse" id="navbarColor02">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a href="{{ path('home') }}">accueil</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ path('paintings') }}">notre galerie</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ path('articles') }}">notre journal</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ path('about') }}">à propos de nous</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ path('team') }}">notre équipe</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+{% endblock %}

@@ -1,0 +1,17 @@
+{%  extends 'base.html.twig' %}
+
+{% block body %}
+    <main class="container-newPainting">
+        <h3 class="offset-1 display-5 my-5">Ajouter une oeuvre</h3>
+        <div class="row">
+            <div class="col-md-8 offset-2">
+                {{ form_start(form) }}
+                {{ form_widget(form) }}
+                <button type="submit" class="btn btn-outline-secondary">Ajouter l'oeuvre</button>
+                <button type="submit" class="btn btn-outline-secondary"><a href="{{ path('newCategory') }}">Nouvelle catégorie</a></button>
+                <button type="submit" class="btn btn-outline-secondary"><a href="{{ path('newTechnical') }}">Nouvelle technique</a></button
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </main>
+{% endblock %}

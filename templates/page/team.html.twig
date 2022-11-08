@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Notre équipe - {{ parent() }}{% endblock %}
+
+{% block body %}
+
+    <section class="team text-center py-5">
+        <div class="container">
+            <div class="header my-5">
+                <h1 class="display-5 mb-4">Notre équipe</h1>
+                <h3 class="display-6 mb-4">Moving the world with creativity</h3>
+                <div class="col-lg-6 mx-auto">
+                    <p class="lead mb-3">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta ducimus, iste  repellendus sit tempora.</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 col-lg-3">
+                    <div class="img-block mb-5">
+                        <img src="{{ asset('img/avatar/1.jpg') }}" class="img-fluid  img-thumbnail rounded-circle" alt="image1">
+                        <div class="content mt-2">
+                            <h4>Gandalf le Gris</h4>
+                            <p class="text-muted">Fondateur & CEO </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3 ">
+                    <div class="img-block mb-5">
+                        <img src="{{ asset('img/avatar/2.jpg') }}"  class="img-fluid  img-thumbnail rounded-circle" alt="image1">
+                        <div class="content mt-2">
+                            <h4>Sméagold</h4>
+                            <p class="text-muted">Directeur marketing</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="img-block mb-5">
+                        <img src="{{ asset('img/avatar/3.jpg') }}"  class="img-fluid  img-thumbnail rounded-circle" alt="image1">
+                        <div class="content mt-2">
+                            <h4>Gimli</h4>
+                            <p class="text-muted">Directeur artistique</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="img-block mb-5">
+                        <img src="{{ asset('img/avatar/4.jpg') }}"  class="img-fluid  img-thumbnail rounded-circle" alt="image1">
+                        <div class="content mt-2">
+                            <h4>Sauron</h4>
+                            <p class="text-muted">Conservateur du patrimoine</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

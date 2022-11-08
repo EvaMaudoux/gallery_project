@@ -1,0 +1,88 @@
+{% extends 'base.html.twig' %}
+{% block title %} Détails oeuvre - {{ parent() }}{% endblock %}
+
+{% block body %}
+
+    {% for message in app.flashes('info') %}
+        <div class="alert alert-dismissible alert-success" style="height: 65px">
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            {{ message }}
+        </div>
+    {% endfor %}
+
+
+    <main class="container painting">
+        <section id="detail">
+            <h2 class="mt-5"> {{ painting.title | capitalize }}</h2>
+            <ul class="nav nav-tabs mt-4">
+                <li class="nav-item">
+                    <a class="nav-link " data-bs-toggle="tab" href="#profil">Profil</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-bs-toggle="tab" href="#details">Détail</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-bs-toggle="tab" href="#comments">Commentaires</a>
+                </li>
+            </ul>
+
+            <div id="tabContent" class="tab-content my-5">
+                <!-- profil -->
+                <div class="tab-pane fade" id="profil">
+                    <div class="row">
+                        <div class="col-md-5 my-3">
+                            <img src="{{ asset('img/paintings/' ~ painting.imageName) }}" alt="" class="img-fluid">
+                        </div>
+                        <div class="col-md-7 my-4 ml-2">
+                            <h4>Description</h4>
+                            <p>{{ painting.smallDescription | capitalize}}</p>
+                            <h4 class="mt-4">Informations</h4>
+                            <p class="description ">
+                                Date de création : {{ painting.created | date('d/m/y') }}<br>
+                                Dimensions du tableau : {{ painting.height }}
+                                x {{ painting.width }}
+                                cm<br>
+                                Courant artistique : {{ painting.category.name }}<br>
+                                Technique utilisée: {{ painting.technical.name }}<br>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <!-- details -->
+                <div class="tab-pane fade" id="details">
+                    <h4 class="my-3">Description complète</h4>
+                    <p>{{ painting.fullDescription }}</p>
+                </div>
+                <!-- commentaires -->
+                <div class="tab-pane fade" id="comments">
+                    <h4 class="my-5">Liste des commentaires</h4>
+                    <div class="card">
+                        {% for comment in comments %}
+                            <div class="card-body">
+                                <div class="card my-2">
+                                    <div class="card-body">
+                                        <p class="fw-bolder">{{ comment.title | capitalize }}</p>
+                                        <p>{{ comment.content }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <p>
+                        <button class="offset-1 btn btn-primary px-4 py-2 fs-5 my-5" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-expanded="false" aria-controls="collapseWidthExample">
+                           Nouveau commentaire
+                        </button>
+                    </p>
+                    <div class="offset-1" style="min-height: 150px; width: 600px">
+                        <div class="collapse collapse-horizontal" id="collapseWidthExample">
+                            {{ form(form) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <a href="{{ path('paintings') }}" class="btn btn-outline-dark my-4 mx-2">Retour aux oeuvres</a>
+            </div>
+        </section>
+    </main>
+{% endblock %}

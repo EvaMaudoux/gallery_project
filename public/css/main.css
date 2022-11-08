@@ -1,0 +1,279 @@
+.btn, #paintings-gallery .controls-filter .btn {
+  background-color: #cfa477;
+  color: #ffffff;
+  font-size: 1.1rem;
+  border: none;
+}
+.btn:hover, #paintings-gallery .controls-filter .btn:hover {
+  background-color: #c28b51;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  color: #1a1e21;
+}
+
+p {
+  font-size: 1.2rem;
+}
+
+h5 {
+  font-size: 1.3rem;
+}
+
+a {
+  color: #feebde;
+  text-decoration: none;
+}
+a:hover {
+  color: #feebde;
+}
+
+.navbar {
+  height: auto;
+}
+.navbar .navbar-brand {
+  color: #feebde;
+  text-transform: uppercase;
+  font-size: 1.5rem;
+}
+.navbar .navbar-nav {
+  margin-left: 40px;
+}
+.navbar .navbar-nav .nav-item {
+  font-size: 1rem;
+  margin: 15px;
+  text-transform: uppercase;
+}
+.navbar .navbar-nav .nav-item a:hover {
+  color: #cfa477;
+  letter-spacing: 0.5px;
+}
+
+.carousel-inner .c-item .carousel-caption {
+  color: #feebde;
+  height: 200px;
+  border: 1px solid #feebde;
+  border-radius: 5px;
+  background-color: rgba(254, 235, 222, 0.2);
+  margin-bottom: 6rem;
+}
+.carousel-inner .c-item .carousel-caption h1 {
+  padding-top: 1.5rem;
+  padding-bottom: 0.5rem;
+  font-size: 2.2rem;
+  letter-spacing: 1.8px;
+}
+.carousel-inner .c-item .carousel-caption h2 {
+  font-size: 3rem;
+  letter-spacing: 2px;
+}
+
+.home-trends h2 {
+  margin-top: 8rem;
+}
+.home-trends .btn, .home-trends #paintings-gallery .controls-filter .btn, #paintings-gallery .controls-filter .home-trends .btn {
+  font-size: larger;
+}
+.home-trends .btn:active, .home-trends #paintings-gallery .controls-filter .btn:active, #paintings-gallery .controls-filter .home-trends .btn:active {
+  background-color: #c28b51;
+}
+
+.home-blog h2 {
+  margin-top: 8rem;
+}
+.home-blog img {
+  width: 100%;
+  height: 100%;
+}
+.home-blog .btn, .home-blog #paintings-gallery .controls-filter .btn, #paintings-gallery .controls-filter .home-blog .btn {
+  font-size: larger;
+}
+.home-blog .btn:active, .home-blog #paintings-gallery .controls-filter .btn:active, #paintings-gallery .controls-filter .home-blog .btn:active {
+  background-color: #c28b51;
+}
+
+.home-about {
+  margin-top: 9rem;
+}
+.home-about i {
+  color: #cfa477;
+  font-size: 3rem;
+  padding: 0 1rem;
+}
+.home-about h2 {
+  padding-bottom: 0.5rem;
+}
+.home-about p {
+  text-align: justify;
+}
+.home-about img {
+  padding-left: 2rem;
+}
+
+#paintings-gallery .controls-filter ul li.btn {
+  margin: 1px;
+}
+#paintings-gallery .controls-filter .btn {
+  margin: 10px;
+}
+#paintings-gallery .filter-container .filtr-item h4 {
+  font-size: 1.3rem;
+  padding: 4px 0;
+  color: #4c4c4c;
+}
+#paintings-gallery .filter-container .filtr-item h5 {
+  color: #cfa477;
+  text-transform: capitalize;
+  text-align: center;
+}
+#paintings-gallery .filter-container .filtr-item p {
+  text-align: center;
+}
+#paintings-gallery .filter-container .filtr-item img {
+  width: 100%;
+  height: auto;
+}
+#paintings-gallery .filter-container .filtr-item .btn:active {
+  background-color: #c28b51;
+}
+#paintings-gallery .card-body a {
+  margin-top: 10px;
+}
+
+#detail h2 {
+  font-size: 2.3rem;
+}
+#detail .nav-tabs .nav-item a {
+  font-size: 1.2rem;
+  color: #1a1e21;
+  padding-right: 20px;
+}
+#detail .nav-tabs .nav-item a:hover {
+  color: #cfa477;
+}
+#detail .btn:active {
+  background-color: #c28b51;
+}
+#detail #tabContent h4 {
+  font-size: 1.8rem;
+  font-weight: lighter;
+  color: #cfa477;
+}
+#detail #tabContent button, #detail #tabContent label {
+  font-size: 1.2rem;
+}
+#detail #tabContent img {
+  width: 90%;
+}
+#detail #comments button:active {
+  background-color: #c28b51;
+}
+
+.container-articles .card-header {
+  font-size: 1.4rem;
+  background-color: #f0e3d5;
+}
+.container-articles .card-footer {
+  background-color: #f0e3d5;
+}
+.container-articles .card {
+  margin: 4rem 0;
+}
+.container-articles .card .btn:active, .container-articles .card #paintings-gallery .controls-filter .btn:active, #paintings-gallery .controls-filter .container-articles .card .btn:active {
+  background-color: #c28b51;
+}
+.container-articles img {
+  width: 130%;
+}
+
+.container-article h4 {
+  font-size: 1.6rem;
+  letter-spacing: 1px;
+}
+.container-article .btn, .container-article #paintings-gallery .controls-filter .btn, #paintings-gallery .controls-filter .container-article .btn {
+  margin-top: 3.5rem;
+}
+.container-article .btn:active, .container-article #paintings-gallery .controls-filter .btn:active, #paintings-gallery .controls-filter .container-article .btn:active {
+  background-color: #c28b51;
+}
+
+.team h3 {
+  color: #cfa477;
+  font-weight: lighter;
+}
+.team .img-thumbnail {
+  padding: 0.25rem;
+  background-color: #fff;
+  border: 1px solid #dee2e6;
+  border-radius: 0.25rem;
+  max-width: 100%;
+  height: auto;
+}
+.team .social-link {
+  width: 50px;
+  height: 50px;
+  border: 1px solid #ddd;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #cfa477;
+  border-radius: 50%;
+  transition: all 0.3s;
+  font-size: 0.9rem;
+}
+
+.about .btn:active, .about #paintings-gallery .controls-filter .btn:active, #paintings-gallery .controls-filter .about .btn:active {
+  background-color: #c28b51;
+}
+
+#admin-paintings h3 {
+  color: #4c4c4c;
+}
+#admin-paintings h3 a i {
+  color: #cfa477;
+}
+#admin-paintings table {
+  text-align: center;
+}
+#admin-paintings table i {
+  font-size: 1.5rem;
+}
+#admin-paintings table th {
+  font-size: 1.3rem;
+  padding: 2.2rem 0;
+}
+#admin-paintings table td {
+  font-size: 1.2rem;
+}
+#admin-paintings table td img {
+  width: 90%;
+}
+
+.container-newPainting button {
+  margin: 2.5rem 1rem 0 0;
+}
+.container-newPainting button > a {
+  color: #ffffff;
+}
+
+footer {
+  color: #feebde;
+}
+footer a, footer .nav-item {
+  text-transform: uppercase;
+  color: #feebde;
+  padding: 1.2rem;
+  font-size: 1rem;
+}
+footer a:hover, footer .nav-item:hover {
+  color: #cfa477;
+}
+footer a i, footer .nav-item i {
+  font-size: 1.4rem;
+}
+
+/*# sourceMappingURL=main.css.map */

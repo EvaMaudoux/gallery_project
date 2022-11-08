@@ -1,0 +1,343 @@
+@import 'partials/tools';
+@import 'partials/variables';
+
+
+
+// GENERAL
+
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  color: $black;
+}
+
+p {
+  font-size: 1.2rem;
+}
+
+h5 {
+  font-size: 1.3rem;
+}
+
+ a {
+   color: $secondary-color;
+  text-decoration: none ;
+   &:hover {
+     color: $secondary-color;
+   }
+}
+
+
+ // Navbar
+.navbar {
+  height: auto;
+  .navbar-brand {
+    color: $secondary-color;
+    text-transform: uppercase;
+    font-size: 1.5rem;
+  }
+  .navbar-nav {
+    margin-left: 40px;
+    .nav-item {
+      font-size: 1rem;
+      margin: 15px;
+      text-transform: uppercase;
+      a:hover {
+        color: $primary-color;
+        letter-spacing: 0.5px;
+      }
+    }
+  }
+}
+
+// Slider
+.carousel-inner {
+  .c-item {
+    .carousel-caption {
+      color: $secondary-color;
+      height: 200px;
+      border: 1px solid $secondary-color;
+      border-radius: 5px;
+      background-color: transparentize($secondary-color, 0.8);
+      margin-bottom: 6rem;
+      h1 {
+        padding-top: 1.5rem;
+        padding-bottom: .5rem;
+        font-size: 2.2rem;
+        letter-spacing: 1.8px;
+      }
+      h2 {
+        font-size:3rem;
+        letter-spacing: 2px;
+      }
+    }
+  }
+}
+
+// Home
+.home-trends {
+  h2 {
+    margin-top: 8rem;
+  }
+  .btn {
+    font-size: larger;
+    &:active {
+      background-color: darken($primary-color, 10%);
+    }
+  }
+}
+
+.home-blog {
+  h2 {
+    margin-top: 8rem;
+  }
+  img {
+    width: 100%;
+    height: 100%;
+  }
+  .btn {
+    font-size: larger;
+    &:active {
+      background-color: darken($primary-color, 10%);
+    }
+  }
+}
+
+.home-about {
+    margin-top: 9rem;
+    i {
+      color: $primary-color;
+      font-size: 3rem;
+      padding: 0 1rem;
+    }
+  h2 {
+    padding-bottom: .5rem;
+  }
+  p {
+    text-align: justify;
+  }
+  img {
+    padding-left: 2rem;
+  }
+}
+
+
+// Galerie / Filterizr
+#paintings-gallery {
+  .controls-filter {
+    ul li.btn {
+      margin: 1px;
+    }
+    .btn {
+      @extend .btn;
+      margin: 10px;
+    }
+   }
+  .filter-container {
+    .filtr-item {
+      h4 {
+        font-size: 1.3rem;
+        padding : 4px 0;
+        color: $grey;
+      }
+      h5 {
+        color: $primary-color;
+        text-transform: capitalize;
+        text-align: center;
+      }
+      p {
+        text-align: center;
+      }
+      img {
+        width: 100%;
+        height: auto;
+      }
+      .btn {
+        &:active {
+          background-color: darken($primary-color, 10%);
+        }
+      }
+    }
+  }
+  .card-body a {
+    margin-top: 10px;
+  }
+}
+
+
+// Détail d'une oeuvre
+#detail {
+  h2 {
+    font-size: 2.3rem;
+  }
+  .nav-tabs {
+    .nav-item a {
+      font-size: 1.2rem;
+      color: $black;
+      padding-right: 20px;
+      &:hover {
+        color: $primary-color;
+        }
+      }
+    }
+  .btn {
+    &:active {
+      background-color: darken($primary-color, 10%);
+    }
+  }
+  #tabContent {
+    h4 {
+      font-size: 1.8rem;
+      font-weight: lighter;
+      color: $primary-color;
+    }
+    button, label {
+      font-size: 1.2rem;
+    }
+    img {
+      width: 90%;
+    }
+  }
+  // Commentaires
+  #comments {
+      button {
+        &:active {
+          background-color: darken($primary-color, 10%);
+        }
+      }
+  }
+}
+
+
+// Journal de la galerie
+.container-articles {
+  .card-header {
+    font-size: 1.4rem;
+    background-color: lighten($primary-color, 25%);
+  }
+  .card-footer {
+    background-color: lighten($primary-color, 25%);
+  }
+  .card {
+    margin: 4rem 0;
+    .btn {
+      &:active {
+        background-color: darken($primary-color, 10%);
+      }
+    }
+  }
+  img {
+    width: 130%;
+  }
+}
+
+// détail d'un article
+.container-article {
+  h4 {
+    font-size: 1.6rem;
+    letter-spacing: 1px;
+  }
+  .btn {
+    margin-top: 3.5rem;
+    &:active {
+      background-color: darken($primary-color, 10%);
+    }
+  }
+}
+
+// Team
+.team {
+  h3 {
+    color: $primary-color;
+    font-weight: lighter;
+  }
+  .img-thumbnail {
+    padding: .25rem;
+    background-color: #fff;
+    border: 1px solid #dee2e6;
+    border-radius: .25rem;
+    max-width: 100%;
+    height: auto;
+  }
+  .social-link {
+    width: 50px;
+    height: 50px;
+    border: 1px solid #ddd;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: $primary-color;
+    border-radius: 50%;
+    transition: all 0.3s;
+    font-size: 0.9rem;
+  }
+}
+
+// About
+.about {
+  .btn {
+    &:active {
+      background-color: darken($primary-color, 10%);
+    }
+  }
+}
+
+
+// Admin
+// vue générale
+#admin-paintings {
+  h3 {
+    color: $grey;
+    a i {
+      color: $primary-color;
+    }
+  }
+  table {
+    text-align: center;
+    i {
+      font-size: 1.5rem;
+    }
+    th {
+      font-size: 1.3rem;
+      padding: 2.2rem 0;
+    }
+    td {
+      font-size: 1.2rem;
+      img {
+        width: 90%;
+      }
+    }
+  }
+}
+
+// ajouter oeuvre
+.container-newPainting {
+  button {
+    margin: 2.5rem 1rem 0 0;
+    > a {
+      color: #ffffff;
+    }
+  }
+}
+
+
+
+// Footer
+footer {
+  color: $secondary-color;
+   a, .nav-item {
+     text-transform: uppercase;
+    color: $secondary-color;
+    padding: 1.2rem;
+    font-size: 1rem;
+    &:hover {
+      color: $primary-color;
+    }
+     i {
+       font-size: 1.4rem;
+     }
+  }
+}

@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Toutes nos oeuvres - {{ parent() }}{% endblock %}
+
+{% block body %}
+
+    <main class="container paintings">
+        <!-- Categories -->
+        <section id="paintings-gallery">
+            <h2 class="display-5 my-5">La galerie d'oeuvres</h2>
+            <div class="row">
+                <!-- FILTERIZER CONTROLS -->
+                <div class="col-md-12 controls-filter">
+                    <ul>
+                        <!-- For filtering controls add -->
+                        <li data-filter="all" class="btn btn-outline-primary"> Toutes les oeuvres </li>
+                        {% for category in categories %}
+                            <li data-filter="{{ category.id }}" class="btn btn-outline-primary"> {{ category.name}} </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <!-- FILTERIZER PAINTINGS -->
+                <div class="col-md-12 filter-container" style="overflow: hidden;">
+                    <!-- Card -->
+                    {% for painting in paintings %}
+                        <div class="col-md-4 filtr-item" data-category="{{ painting.category.id }}" data-sort="value">
+                            <div class="card m-4" style="min-height: 500px !important;">
+                                <div class="card-header bg-light">
+                                    <h4 class="text-center">{{ painting.title|capitalize }}</h4>
+                                </div>
+                                <div class="card-body" style="height: 200px; max-height: 200px;">
+                                    <img alt="" src="{{ asset('img/paintings/' ~ painting.imageName) }}">
+                                    <p class="card-text">
+                                    <h5 class="card-subtitle my-3">{{ painting.category.name }}</h5>
+                                    <p>{{ painting.smallDescription|capitalize }}</p>
+                                    <div class="text-center">
+                                        <a class="btn my-1 btn-primary btn-sm" href="{{ path('painting', {slug: painting.slug}) }}">Détails de l'oeuvre</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                    <!-- End card -->
+                </div>
+            </div>
+        </section>
+        <!-- End Categories -->
+    </main>
+
+    <script src="{{ asset('js/jquery.min.js') }}"></script>
+    <script src="{{ asset('js/jquery.filterizr.min.js') }}"></script>
+    <script>
+        let filterizd = $('.filter-container').filterizr({
+            // options here
+        });
+    </script>
+{% endblock %}
+

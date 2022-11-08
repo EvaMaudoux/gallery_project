@@ -1,0 +1,27 @@
+{
+  "name": "galerie_maudoux",
+  "version": "1.0.0",
+  "description": "galerie d'art",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "sass": "sass --watch --style=expanded scss/:public/css/",
+    "sass-m": "sass --watch --style=compressed scss/:public/css/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EvaMaudoux/SymfonyProjet.git"
+  },
+  "author": "Eva Maudoux",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/EvaMaudoux/SymfonyProjet/issues"
+  },
+  "homepage": "https://github.com/EvaMaudoux/SymfonyProjet#readme",
+  "dependencies": {
+    "filterizr": "^2.2.4",
+    "jquery": "^3.6.1"
+  }
+}

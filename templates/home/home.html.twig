@@ -1,0 +1,87 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil - {{ parent() }}{% endblock %}
+{% block body %}
+
+    {% include 'partials/slider.html.twig' %}
+
+    <main class="container">
+
+        <!-- Dernières tendances -->
+        <section class="home-trends">
+            <h2 class="display-5 mb-5 ">Dernières tendances</h2>
+            <div class="row ">
+                    {% for painting in paintings %}
+                    <div class="col-md-3 ">
+                        <div class="card">
+                            <img alt="" src="{{ asset('img/trends/' ~ painting.imageName) }}" style="height: 200px; width: 100%">
+                            <div class="card-body text-center lead" style="height: 220px; ">
+                                <h5 class="card-title fs-3 lead mb-4">{{ painting.title | capitalize}}</h5>
+                                <p class="fs-4">{{ painting.category.name | capitalize }}</p>
+                                <p class="card-text">{{ painting.smallDescription | capitalize }}</p>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+                <div class="text-center">
+                    <a class="btn my-1 btn-primary btn-sm py-2 px-4 mt-5" href="{{ path('paintings') }}">Voir toutes les oeuvres</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Journal de la galerie -->
+        <section class="home-blog">
+            <h2 class="display-5 mb-5 ">Le journal de la galerie</h2>
+            <div class="home-news">
+                <div class="row">
+                    {% for article in articles %}
+                        <div class="col-md-6">
+                            <div class="card mb-3">
+                                <div class="row g-0">
+                                    <div class="col-md-5">
+                                        <img src="{{ asset('img/articles/' ~ article.imageName) }}" class="rounded-start" alt="...">
+                                    </div>
+                                    <div class="col-md-7">
+                                        <div class="card-body">
+                                            <h5 class="card-title fs-4 lead mb-3">{{article.name | capitalize}}</h5>
+                                            <p class="card-text lead">{{article.description}}</p>
+                                            <p class="card-text lead"><small class="text-muted">{{ article.createdAt|date('d/m/Y') }}</small></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                    <div class="text-center">
+                        <a class="btn my-1 btn-primary btn-sm py-2 px-4 mt-4" href="{{ path('articles') }}">Voir tous les articles</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- about galerie -->
+        <section class="container home-about">
+            <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
+                <div class="col-10 col-sm-8 col-lg-6">
+                    <img class="d-block mx-lg-auto img-fluid" src="{{ asset('img/home/1.jpg') }}" alt="">
+                    </div>
+                <div class="col-lg-6">
+                    <h2 class="display-5 mt-5 text-lg-start"><i class="icofont-quote-left"></i>En Art point de frontière<i class="icofont-quote-right"></i></h2>
+                    <h4 class="mb-5 text-lg-end"> - Victor Hugo</h4>
+                    <p class="mb-3 lead ">Lorem ipsum dolor sit amet, consectetur adipisicing elit. A ab autem corporis distinctio doloribus earum facere harum inventore libero minima nam, necessitatibus nihil quae qui ratione saepe similique sit
+                        suscipit. Accusamus adipisci aliquam explicabo in libero temporibus, ullam.
+                    <p class="mb-3 lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore, quam?</p>
+                </div>
+                <img class="my-5" src="{{ asset('img/home/txt.jpg') }}" alt="">
+            </div>
+</section>
+</main>
+
+
+
+    <script src="{{ asset('js/jquery.filterizr.min.js') }}"></script>
+    <script>
+        let filterizd = $('.filter-container').filterizr({
+        });
+    </script>
+{% endblock %}
