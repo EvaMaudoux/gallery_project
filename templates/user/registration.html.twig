@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Registration{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <section class="row">
+            <div class="col-md-8 offset-2">
+                <h2 class="display-4 my-4">S'enregistrer</h2>
+                {{ form_start(registrationForm) }}
+                {{ form_widget(registrationForm) }}
+                <button type="submit" class="btn btn-outline-secondary">S'inscrire</button>
+                {{ form_end(registrationForm) }}
+            </div>
+        </section>
+    </div>
+
+
+
+{% endblock %}

@@ -295,11 +295,26 @@ h5 {
   }
 }
 
-// User
-.img-user {
-  width: 40px;
-  border-radius: 50%;
+// PARTIE USER
+
+// navbar
+nav {
+  .img-user {
+    width: 40px;
+    border-radius: 50%;
+  }
 }
+
+// profile
+.container-profile {
+  margin-top: 8rem;
+  img {
+    width: 75%;
+    border-radius: 50%;
+  }
+ }
+
+
 
 // Admin
 // vue générale

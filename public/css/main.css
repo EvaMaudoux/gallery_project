@@ -240,8 +240,16 @@ a:hover {
   background-color: #c28b51;
 }
 
-.img-user {
+nav .img-user {
   width: 40px;
+  border-radius: 50%;
+}
+
+.container-profile {
+  margin-top: 8rem;
+}
+.container-profile img {
+  width: 75%;
   border-radius: 50%;
 }
 

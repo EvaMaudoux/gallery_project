@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ app.user.firstName }} {{ app.user.lastName }}{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <section class="row">
+            <div class="col-md-8 offset-md-2">
+                {{ form_start(form) }}
+                {{ form_widget(form) }}
+                <button type="submit" class="btn btn-outline-dark">Enregistrer les modifications</button>
+                {{ form_end(form) }}
+            </div>
+        </section>
+    </div>
+{% endblock %}
+

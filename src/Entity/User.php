@@ -4,11 +4,19 @@ namespace App\Entity;
 
 use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Serializable;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Vich\UploaderBundle\Mapping\Annotation\Uploadable;
+
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
-class User implements UserInterface, PasswordAuthenticatedUserInterface
+#[UniqueEntity(fields: ['email'], message: 'Un compte existe déjà avec cet email')]
+#[Vich\Uploadable]
+class User implements UserInterface, PasswordAuthenticatedUserInterface, Serializable
 {
     // attributs du make:user
     #[ORM\Id]
@@ -37,6 +45,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(length: 255)]
     private ?string $imageName = null;
+
+    #[Vich\UploadableField(mapping: 'user_image', fileNameProperty: 'imageName')]
+    private ?File $imageFile = null;
+
 
     #[ORM\Column]
     private ?\DateTimeImmutable $created_at = null;
@@ -148,7 +160,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->imageName;
     }
 
-    public function setImageName(string $imageName): self
+    public function setImageName(?string $imageName): self
     {
         $this->imageName = $imageName;
 
@@ -190,4 +202,42 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
+
+    // Méthodes Vish
+    public function setImageFile(?File $imageFile = null): void
+    {
+        $this->imageFile = $imageFile;
+
+        if (null !== $imageFile) {
+            $this->updatedAt = new \DateTimeImmutable();
+        }
+    }
+
+    public function getImageFile(): ?File
+    {
+        return $this->imageFile;
+    }
+
+
+
+    // Serialize (données user)
+    public function serialize()
+    {
+        // Propriétés du composant Security (on ne serialize que celles-ci) (le make:user)
+        return serialize([
+            $this->id,
+            $this->email,
+            $this->password,
+        ]);
+    }
+
+    public function unserialize(string $data)
+    {
+        [
+            $this->id,
+            $this->email,
+            $this->password,
+        ] = unserialize($data);
+    }
+
 }
