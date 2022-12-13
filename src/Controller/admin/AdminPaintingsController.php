@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\admin;
 
 use App\Entity\Category;
 use App\Entity\Painting;
@@ -16,10 +16,16 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class AdminController extends AbstractController
+class AdminPaintingsController extends AbstractController
 {
-    #[Route('/admin', name: 'admin')]
-    public function paintings(PaintingRepository $repository, PaginatorInterface $paginator, Request $request): Response
+    /**
+     * @param PaintingRepository $repository
+     * @param PaginatorInterface $paginator
+     * @param Request $request
+     * @return Response
+     */
+    #[Route('/admin/paintings', name: 'app_admin_paintings')]
+    public function adminPaintings(PaintingRepository $repository, PaginatorInterface $paginator, Request $request): Response
     {
         $paintings = $repository->findBy(
             [],
@@ -30,15 +36,19 @@ class AdminController extends AbstractController
             $request->query->getInt('page', 1),
             10
         );
-        return $this->render('admin/admin.html.twig', [
+        return $this->render('admin/paintings/paintings.html.twig', [
             'paintings' => $pagination,
         ]);
     }
 
 
-
-    #[Route('admin/delete/{id}', name: 'delete')]
-    public function delete(Painting $painting, EntityManagerInterface $manager)
+    /**
+     * @param Painting $painting
+     * @param EntityManagerInterface $manager
+     * @return Response
+     */
+    #[Route('admin/delPainting/{id}', name: 'app_admin_del_painting')]
+    public function delPainting(Painting $painting, EntityManagerInterface $manager) : Response
     {
         $manager->remove($painting);
         $manager->flush();
@@ -48,13 +58,19 @@ class AdminController extends AbstractController
             'Oeuvre supprimée avec succès!'
         );
 
-        return $this->redirectToRoute('admin');
+        return $this->redirectToRoute('app_admin_del_painting');
     }
 
 
-
-    #[Route('/admin/edit/{id}', name:'edit')]
-    public function edit(EntityManagerInterface $manager, Painting $painting, Request $request) {
+    /**
+     * @param EntityManagerInterface $manager
+     * @param Painting $painting
+     * @param Request $request
+     * @return Response
+     */
+    #[Route('/admin/editPainting/{id}', name:'app_admin_edit_painting')]
+    public function editPainting(EntityManagerInterface $manager, Painting $painting, Request $request) : Response
+    {
         $form = $this->createForm(PaintingType::class, $painting);
         $form->handleRequest($request);
 
@@ -67,15 +83,20 @@ class AdminController extends AbstractController
                 'Oeuvre mise à jours avec succès!'
             );
 
-            return $this->redirectToRoute('admin');
+            return $this->redirectToRoute('app_admin_edit_painting');
         }
-        return $this->renderForm('admin/editPainting.html.twig', [
+        return $this->renderForm('admin/paintings/editPainting.html.twig', [
             'form' => $form,
         ]);
     }
 
 
-    #[Route('admin/newPainting', name:'newPainting')]
+    /**
+     * @param Request $request
+     * @param EntityManagerInterface $manager
+     * @return Response
+     */
+    #[Route('admin/newPainting', name:'app_admin_new_painting')]
     public function newPainting(Request $request, EntityManagerInterface $manager) : Response
     {
         $paint = new Painting;
@@ -94,16 +115,21 @@ class AdminController extends AbstractController
                 'Oeuvre ajoutée avec succès!'
             );
 
-            return $this->redirectToRoute('admin');
+            return $this->redirectToRoute('app_admin_new_painting');
         }
 
-        return $this->renderForm('admin/newPainting.html.twig', [
+        return $this->renderForm('admin/paintings/newPainting.html.twig', [
             'form' => $form
         ]);
     }
 
 
-    #[Route('admin/newCategory', name:'newCategory')]
+    /**
+     * @param Request $request
+     * @param EntityManagerInterface $manager
+     * @return Response
+     */
+    #[Route('admin/newCategory', name:'app_admin_new_category')]
     public function newCategory(Request $request, EntityManagerInterface $manager) : Response
     {
         $cat = new Category;
@@ -119,16 +145,21 @@ class AdminController extends AbstractController
                 'Catégorie ajoutée avec succès!'
             );
 
-            return $this->redirectToRoute('admin');
+            return $this->redirectToRoute('app_admin_new_category');
         }
 
-        return $this->renderForm('admin/newCategory.html.twig', [
+        return $this->renderForm('admin/paintings/newCategory.html.twig', [
             'form' => $form
         ]);
     }
 
 
-    #[Route('admin/newTechnical', name:'newTechnical')]
+    /**
+     * @param Request $request
+     * @param EntityManagerInterface $manager
+     * @return Response
+     */
+    #[Route('admin/newTechnical', name:'app_admin_new_technical')]
     public function newTechnical(Request $request, EntityManagerInterface $manager) : Response
     {
         $tech = new Technical;
@@ -144,10 +175,10 @@ class AdminController extends AbstractController
                 'Technique ajoutée avec succès!'
             );
 
-            return $this->redirectToRoute('admin');
+            return $this->redirectToRoute('app_admin_new_technical');
         }
 
-        return $this->renderForm('admin/newTechnical.html.twig', [
+        return $this->renderForm('admin/paintings/newTechnical.html.twig', [
             'form' => $form
         ]);
     }

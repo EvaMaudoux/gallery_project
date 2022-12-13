@@ -12,7 +12,13 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class ArticleController extends AbstractController
 {
-    #[Route('/articles', name: 'articles')]
+    /**
+     * @param ArticleRepository $articleRepository
+     * @param PaginatorInterface $paginator
+     * @param Request $request
+     * @return Response
+     */
+    #[Route('/articles', name: 'app_articles')]
     public function articles(ArticleRepository $articleRepository, PaginatorInterface $paginator, Request $request): Response
     {
         $article = $articleRepository->findBy(
@@ -30,11 +36,13 @@ class ArticleController extends AbstractController
         ]);
     }
 
+
     /**
+     * @param Article $article
      * @return Response
      */
-    #[Route('/article/{slug}', name: 'article')]
-    public function course(Article $article): Response
+    #[Route('/article/{slug}', name: 'app_article')]
+    public function article(Article $article): Response
     {
         return $this->render('article/article.html.twig', [
             'article' =>$article

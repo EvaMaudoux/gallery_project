@@ -11,13 +11,16 @@ class PageController extends AbstractController
     /**
      * @return Response
      */
-    #[Route('/about', name: 'about')]
+    #[Route('/about', name: 'app_about')]
     public function about(): Response
     {
         return $this->render('page/about.html.twig');
     }
 
-    #[Route('/team', name: 'team')]
+    /**
+     * @return Response
+     */
+    #[Route('/team', name: 'app_team')]
     public function team(): Response
     {
         return $this->render('page/team.html.twig');

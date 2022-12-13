@@ -50,7 +50,17 @@ a:hover {
 }
 .navbar .navbar-nav .nav-item a:hover {
   color: #cfa477;
-  letter-spacing: 0.5px;
+}
+.navbar .d-flex .btn, .navbar .d-flex #paintings-gallery .controls-filter .btn, #paintings-gallery .controls-filter .navbar .d-flex .btn {
+  font-size: 1rem;
+  color: #feebde;
+  padding: 10px;
+  margin-right: 10px;
+  background: none;
+  text-transform: uppercase;
+}
+.navbar .d-flex .btn:hover, .navbar .d-flex #paintings-gallery .controls-filter .btn:hover, #paintings-gallery .controls-filter .navbar .d-flex .btn:hover {
+  color: #cfa477;
 }
 
 .carousel-inner .c-item .carousel-caption {
@@ -228,6 +238,11 @@ a:hover {
 
 .about .btn:active, .about #paintings-gallery .controls-filter .btn:active, #paintings-gallery .controls-filter .about .btn:active {
   background-color: #c28b51;
+}
+
+.img-user {
+  width: 40px;
+  border-radius: 50%;
 }
 
 #admin-paintings h3 {

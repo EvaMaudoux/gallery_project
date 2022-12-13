@@ -17,7 +17,12 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class PaintingController extends AbstractController
 {
-    #[Route('/paintings', name: 'paintings')]
+    /**
+     * @param CategoryRepository $categoryRepository
+     * @param PaintingRepository $paintingRepository
+     * @return Response
+     */
+    #[Route('/paintings', name: 'app_paintings')]
     public function paintings(CategoryRepository $categoryRepository, PaintingRepository $paintingRepository): Response
     {
         $categories = $categoryRepository->findBy(
@@ -35,10 +40,15 @@ class PaintingController extends AbstractController
         ]);
     }
 
+
     /**
+     * @param Painting $painting
+     * @param CommentRepository $commentRepository
+     * @param Request $request
+     * @param EntityManagerInterface $manager
      * @return Response
      */
-    #[Route('/painting/{slug}', name: 'painting')]
+    #[Route('/painting/{slug}', name: 'app_painting')]
     public function painting(Painting $painting, CommentRepository $commentRepository, Request $request, EntityManagerInterface $manager): Response
     {
         $comments = $commentRepository->findBy(
@@ -58,7 +68,7 @@ class PaintingController extends AbstractController
                 'info',
                 'Votre commentaire a bien été envoyé!'
             );
-            return $this->redirectToRoute('painting',
+            return $this->redirectToRoute('app_painting',
                 ['slug' => $painting->getSlug()]
             );
         }

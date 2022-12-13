@@ -8,21 +8,41 @@
             <div class="navbar-collapse" id="navbarColor02">
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item">
-                        <a href="{{ path('home') }}">accueil</a>
+                        <a href="{{ path('app_home') }}">accueil</a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ path('paintings') }}">notre galerie</a>
+                        <a href="{{ path('app_paintings') }}">notre galerie</a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ path('articles') }}">notre journal</a>
+                        <a href="{{ path('app_articles') }}">notre journal</a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ path('about') }}">à propos de nous</a>
+                        <a href="{{ path('app_about') }}">à propos de nous</a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ path('team') }}">notre équipe</a>
+                        <a href="{{ path('app_team') }}">notre équipe</a>
                     </li>
                 </ul>
+            </div>
+
+            <div class="d-flex">
+                {% if not app.user %}
+                    <a href="{{ path('app_login') }}" type="button" class="btn btn-dark btn-sm"><i class="icofont-sign-in"></i> S'identifier</a>
+                    <button type="button" class="btn btn-dark btn-sm"><i class="icofont-user-alt-4"></i> S'inscrire</button>
+                {% else %}
+                    <div class="dropdown" style="padding-right: 25px;">
+                        <button class="btn btn-dark dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <img src="{{asset('img/user/') ~ app.user.imageName }}" class="img-user">&nbsp;&nbsp;{{ app.user.firstName }} {{ app.user.lastName }}
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Voir profil</a></li>
+                            <li><a class="dropdown-item" href="#">Modifier profil</a></li>
+                            <li><a class="dropdown-item" href="#">Modifier password</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a href="{{path('app_logout')}}" class="dropdown-item">Se déconnecter</a></li>
+                        </ul>
+                    </div>
+                {% endif %}
             </div>
         </div>
     </nav>

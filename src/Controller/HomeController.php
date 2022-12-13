@@ -11,7 +11,13 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class HomeController extends AbstractController
 {
-    #[Route('/', name: 'home')]
+    /**
+     * @param PaintingRepository $paintingRepository
+     * @param CategoryRepository $categoryRepository
+     * @param ArticleRepository $articleRepository
+     * @return Response
+     */
+    #[Route('/', name: 'app_home')]
     public function home(PaintingRepository $paintingRepository, CategoryRepository $categoryRepository, ArticleRepository $articleRepository): Response
     {
         $painting = $paintingRepository->findBy(
