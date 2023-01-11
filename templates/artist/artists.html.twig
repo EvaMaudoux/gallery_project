@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Toutes les artistes - {{ parent() }}{% endblock %}
+
+{% block body %}
+    <main class="container-articles">
+        <section class="row offset-2 text">
+            <div class="col-md-8">
+                <h2 class="display-5 my-5">Tous les artistes peintres</h2>
+                {% for artist in artists %}
+                    <div class="card">
+                        <h5 class="card-header text-lg-center py-3 ">{{ artist.lastName|capitalize }} {{ artist.firstName|capitalize }}</h5>
+                        <div class="card-body row">
+                            <div class="col-2">
+                                <img src="{{ asset('img/artist/') ~ artist.imageName }}" alt="{{ artist.lastName }}">
+                            </div>
+                            <div class="col-8 mx-5">
+                                <p class="card-text lead">Né le : {{ artist.birthDate | date('d/m/Y') }}</p>
+                                <p class="card-text lead">{{ artist.biography }}</p>
+                                <div class="text-end pt-5 pb-2">
+                                    <a class="btn mt-5 px-3 py-1 btn-primary btn-sm" href="{{ path('app_artist', {slug: artist.slug}) }}">Plus de détails</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+
+            </div>
+            <div class="row">
+                <div class="col-md-8 offset-2">
+                    <div class="navigation">
+                        {{ knp_pagination_render(artists) }}
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+{% endblock %}

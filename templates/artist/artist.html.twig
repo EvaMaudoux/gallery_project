@@ -1,0 +1,29 @@
+
+{% extends 'base.html.twig' %}
+
+{% block title %} Artiste - {{ parent() }}{% endblock %}
+
+{% block body %}
+
+    <main class="container-article m-3" style="max-width: 1500px">
+        <div class="card mb-3 mt-5 offset-2">
+            <div class="row g-0 align-items-center" >
+                <div class="col-md-5 ">
+                    <img src="{{ asset('/img/artist/' ~ artist.imageName) }}" class="img-fluid rounded-start" alt="{{ artist.lastName }}">
+                </div>
+                <div class="col-7">
+                    <div class="card-body text-lg-center ">
+                        <h4 class="pt-4 card-title lead fw-bolder">{{ artist.lastName|capitalize }} {{ artist.firstName|capitalize }}</h4>
+                        <p class="card-text pt-2 lead"><small class="text-muted">Né le : {{ artist.birthDate | date('d/m/Y') }}</small></p>
+                        <p class="card-text p-3 lead">{{ artist.biography }}</p>
+                        <p class="card-text pt-2 lead"><small class="text-muted">Peintures réalisées: </small></p>
+                        <div>
+                            <a class="btn btn-outline-dark" href="{{ path('app_artists') }}"> Retour aux artistes</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+{% endblock %}

@@ -77,6 +77,10 @@ class Painting
     #[ORM\OneToMany(mappedBy: 'painting', targetEntity: Comment::class)]
     private Collection $comment;
 
+    #[ORM\ManyToOne(inversedBy: 'paintings')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Artist $artist = null;
+
     public function __construct()
     {
         $this->comment = new ArrayCollection();
@@ -244,6 +248,18 @@ class Painting
                 $comment->setPainting(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getArtist(): ?Artist
+    {
+        return $this->artist;
+    }
+
+    public function setArtist(?Artist $artist): self
+    {
+        $this->artist = $artist;
 
         return $this;
     }

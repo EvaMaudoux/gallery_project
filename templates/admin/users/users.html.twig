@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Users - {{ parent() }}{% endblock %}
+{% block body %}
+    <h4 class="my-5 text-muted">Gestion des utilisateurs</h4>
+    <table id="table-admin" class="table table-hover">
+        <thead>
+        <tr>
+            <th>Image</th>
+            <th>Nom</th>
+            <th>Prénom</th>
+            <th>Email</th>
+            <th>Rôle</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for user in users %}
+            <tr>
+                <td><img src="{{ asset('img/user/') ~ user.imageName }}"  alt="{{ user.lastName }}" class="user-img"></td>
+                <td>{{ user.lastName }}</td>
+                <td>{{ user.firstName }}</td>
+                <td>{{ user.email }}</td>
+                {% for role in user.roles %}
+                    <td>{{ role | capitalize | replace({'_': ' '}) }}</td>
+                {% endfor %}
+                <td>
+                    <a href="" class="btn btn-success"><i class="icofont-ui-edit"></i></a>&nbsp;
+                    <a href="" class="btn btn-danger"><i class="icofont-ui-delete"></i></a>&nbsp;
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

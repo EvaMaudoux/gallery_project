@@ -15,7 +15,7 @@
     <main class="container">
         <section id="admin-paintings">
             <h2 class="display-5 mt-5">Administration</h2>
-            <h3 class="offset-1 display-6 mt-5 m3">Ajouter une oeuvre <a href="{{ path('newPainting') }}"><i class="icofont-plus"></i></a></h3>
+            <h3 class="offset-1 display-6 mt-5 m3">Ajouter une oeuvre <a href="{{ path('app_admin_new_painting') }}"><i class="icofont-plus"></i></a></h3>
             <div class="row">
                 <div class="col-md-10 offset-1">
                     <table class="table table-hover">
@@ -38,9 +38,9 @@
                                 <td>{{ painting.created|date('d/m/Y') }}</td>
                                 <td>{{ painting.category.name }}</td>
                                 <td>{{ painting.technical.name }}</td>
-                                <td><a href="{{ path('delete', {id:painting.id}) }}"><i class="icofont-ui-delete text-danger" onclick="return confirm
+                                <td><a href="{{ path('app_admin_del_painting', {id:painting.id}) }}"><i class="icofont-ui-delete text-danger" onclick="return confirm
                                   ('Attention : cette oeuvre sera supprimée définitivement.')"></i></a></td>
-                                <td><a href="{{ path('edit', {id:painting.id}) }}"><i class="icofont-ui-edit text-success"></i></a></td>
+                                <td><a href="{{ path('app_admin_edit_painting', {id:painting.id}) }}"><i class="icofont-ui-edit text-success"></i></a></td>
                             </tr>
                         {% endfor %}
                         </tbody>

@@ -69,7 +69,6 @@ class Category
                 $painting->setCategory(null);
             }
         }
-
         return $this;
     }
 }

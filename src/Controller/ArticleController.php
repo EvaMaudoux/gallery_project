@@ -28,7 +28,7 @@ class ArticleController extends AbstractController
 
         $pagination = $paginator->paginate(
             $article,
-            $request->query->getInt('page', 1), /*page number*/
+            $request->query->getInt('page', 1),
             8
         );
         return $this->render('article/articles.html.twig', [
@@ -45,7 +45,7 @@ class ArticleController extends AbstractController
     public function article(Article $article): Response
     {
         return $this->render('article/article.html.twig', [
-            'article' =>$article
+            'article' =>$article,
         ]);
     }
 

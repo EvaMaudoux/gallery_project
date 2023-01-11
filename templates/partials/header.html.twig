@@ -11,16 +11,19 @@
                         <a href="{{ path('app_home') }}">accueil</a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ path('app_paintings') }}">notre galerie</a>
+                        <a href="{{ path('app_paintings') }}">la galerie</a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ path('app_articles') }}">notre journal</a>
+                        <a href="{{ path('app_artists') }}">les artistes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ path('app_articles') }}">le journal</a>
                     </li>
                     <li class="nav-item">
                         <a href="{{ path('app_about') }}">à propos de nous</a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ path('app_team') }}">notre équipe</a>
+                        <a href="{{ path('app_team') }}">l'équipe</a>
                     </li>
                 </ul>
             </div>
@@ -35,10 +38,14 @@
                             <img src="{{asset('img/user/') ~ app.user.imageName }}" class="img-user">&nbsp;&nbsp;{{ app.user.firstName }} {{ app.user.lastName }}
                         </button>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="{{ path('app_view_profile') }}">Voir profil</a></li>
-                            <li><a class="dropdown-item" href="{{ path('app_edit_profile') }}">Modifier profil</a></li>
-                            <li><a class="dropdown-item" href="#">Modifier password</a></li>
+                            <li><a class="dropdown-item" href="{{ path('app_view_profile') }}">Voir mon profil</a></li>
+                            <li><a class="dropdown-item" href="{{ path('app_edit_profile') }}">Modifier mon profil</a></li>
+                            <li><a class="dropdown-item" href="#">Modifier mon mot de passe</a></li>
                             <li><hr class="dropdown-divider"></li>
+                            {% if is_granted('ROLE_ADMIN') %}
+                                <li><a href="{{ path('app_admin_paintings') }}" class="dropdown-item">Administration</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                            {% endif %}
                             <li><a href="{{path('app_logout')}}" class="dropdown-item">Se déconnecter</a></li>
                         </ul>
                     </div>

@@ -2,6 +2,7 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\Artist;
 use App\Entity\Category;
 use App\Entity\Painting;
 use App\Entity\Technical;
@@ -21,6 +22,7 @@ class PaintingFixtures extends Fixture implements DependentFixtureInterface
         $faker = Factory::create('fr_FR');
         $technicals = $manager->getRepository(Technical::class)->findAll();
         $categories = $manager->getRepository(Category::class)->findAll();
+        $artists = $manager->getRepository(Artist::class)->findAll();
         $slugify = new Slugify();
 
         $nbHeight= count($this->heights);
@@ -40,6 +42,7 @@ class PaintingFixtures extends Fixture implements DependentFixtureInterface
                         ->setImageName($i .'.jpg')
                         ->setTechnical($technicals [$faker->numberBetween(0, (count($technicals) - 1))])
                         ->setCategory($categories [$faker->numberBetween(0, (count($categories) - 1))])
+                        ->setArtist($artists [$faker->numberBetween(0, (count($artists) - 1))])
                         ->setSlug($slugify->slugify($title));
             $manager->persist($painting);
         }
@@ -51,8 +54,7 @@ class PaintingFixtures extends Fixture implements DependentFixtureInterface
         return [
             CategoryFixtures::class,
             TechnicalFixtures::class,
-        ];
+            ArtistFixtures::class,
+            ];
     }
-
-
 }

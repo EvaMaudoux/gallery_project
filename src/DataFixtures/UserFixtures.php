@@ -55,6 +55,18 @@ class UserFixtures extends Fixture
         $manager->flush();
 
 
+        // Super_Admin Pat Mar
+        $user = new User();
+        $user   ->setFirstName('Pat')
+            ->setLastName('Mar')
+            ->setEmail('patmar@gmail.com')
+            ->setImageName('patmar.jpg')
+            ->setPassword($this->hasher->hashPassword($user, 'password'))
+            ->setCreatedAt(new \DateTimeImmutable())
+            ->setUpdatedAt(new \DateTimeImmutable())
+            ->setIsDisabled(false)
+            ->setRoles(['ROLE_SUPER_ADMIN']);
+        $manager->persist($user);
         $manager->flush();
     }
 }
