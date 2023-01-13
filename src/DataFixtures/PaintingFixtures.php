@@ -40,6 +40,7 @@ class PaintingFixtures extends Fixture implements DependentFixtureInterface
                         ->setHeight($this->heights[$faker->numberBetween(0, $nbHeight - 1)])
                         ->setWidth($this->widths[$faker->numberBetween(0, $nbWidth - 1)])
                         ->setImageName($i .'.jpg')
+                        ->setPrice($faker->numberBetween(500, 10000))
                         ->setTechnical($technicals [$faker->numberBetween(0, (count($technicals) - 1))])
                         ->setCategory($categories [$faker->numberBetween(0, (count($categories) - 1))])
                         ->setArtist($artists [$faker->numberBetween(0, (count($artists) - 1))])

@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Votre panier{% endblock %}
+
+{% block body %}
+
+    <main class="container-cart offset-3">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Produit</th>
+                <th>Prix</th>
+                <th>Quantité</th>
+                <th>Total</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for element in dataPanier %}
+                <tr>
+                    <td>{{ element.painting.title }}</td>
+
+                    <td class="text-end">{{ element.painting.price }} €</td>
+                    <td>{{ element.quantity }}</td>
+                    <td class="text-end">{{ element.quantity * element.painting.price }} €</td>
+                    {#<td>
+                        {#
+                        <a href="{{path("app_cart_add", {id: element.painting.id})}}" class="btn btn-success">
+                            <i class="bi bi-cart-plus"></i>
+                        </a>
+
+                        <a href="{{path("cart_remove", {id: element.painting.id})}}" class="btn btn-warning">
+                            <i class="bi bi-cart-dash"></i>
+                        </a>
+                        <a href="{{path("cart_delete", {id: element.painting.id})}}" class="btn btn-danger">
+                            <i class="bi bi-cart-x"></i>
+                        </a>
+                        #}
+                    </td>
+                </tr>
+
+            {% else %} {# for .. esle = si le tableau est vide #}
+                <tr>
+                    <td colspan="5" class="text-center">Votre panier est vide</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+            <tfoot>
+            <tr>
+                <td colspan="3">Total</td>
+                <td class="text-end">{{ total }} €</td>
+                <td>
+                    <a href="" class="btn btn-danger">
+                        <i class="bi bi-cart-x"></i>
+                    </a>
+                </td>
+            </tr>
+            </tfoot>
+        </table>
+    </main>
+
+{% endblock %}

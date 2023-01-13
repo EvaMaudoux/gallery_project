@@ -34,7 +34,8 @@
                                     <h5 class="card-subtitle my-3">{{ painting.category.name }}</h5>
                                     <p>{{ painting.smallDescription|capitalize }}</p>
                                     <div class="text-center">
-                                        <a class="btn my-1 btn-primary btn-sm" href="{{ path('app_painting', {slug: painting.slug}) }}">Détails de l'oeuvre</a>
+                                        <a class="btn my-1 btn-primary btn-sm" href="{{ path('app_painting', {slug: painting.slug}) }}">Détails</a>
+                                        <a class="btn my-1 btn-primary btn-sm" href=""><i class="icofont-shopping-cart"></i></a>
                                     </div>
                                 </div>
                             </div>
