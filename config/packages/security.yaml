@@ -23,8 +23,8 @@ security:
                 path: app_logout
 
     access_control:
-        - { path: ^/admin/users, roles: ROLE_SUPER_ADMIN }
         - { path: ^/admin, roles: ROLE_ADMIN }
+        - { path: ^/admin/users, roles: ROLE_SUPER_ADMIN }
         - { path: ^/profile, roles: ROLE_USER }
 
     role_hierarchy:

@@ -81,6 +81,9 @@ class Painting
     #[ORM\JoinColumn(nullable: false)]
     private ?Artist $artist = null;
 
+    #[ORM\Column]
+    private ?int $price = null;
+
     public function __construct()
     {
         $this->comment = new ArrayCollection();
@@ -260,6 +263,18 @@ class Painting
     public function setArtist(?Artist $artist): self
     {
         $this->artist = $artist;
+
+        return $this;
+    }
+
+    public function getPrice(): ?int
+    {
+        return $this->price;
+    }
+
+    public function setPrice(int $price): self
+    {
+        $this->price = $price;
 
         return $this;
     }

@@ -43,7 +43,7 @@
                             <li><a class="dropdown-item" href="#">Modifier mon mot de passe</a></li>
                             <li><hr class="dropdown-divider"></li>
                             {% if is_granted('ROLE_ADMIN') %}
-                                <li><a href="{{ path('app_admin_paintings') }}" class="dropdown-item">Administration</a></li>
+                                <li><a href="{{ path('app_admin') }}" class="dropdown-item">Administration</a></li>
                                 <li><hr class="dropdown-divider"></li>
                             {% endif %}
                             <li><a href="{{path('app_logout')}}" class="dropdown-item">Se déconnecter</a></li>
