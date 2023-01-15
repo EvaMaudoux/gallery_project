@@ -25,16 +25,19 @@ class CartController extends AbstractController
         // récupération des infos du panier + infos du produit (id)
         foreach ($panier as $id => $quantity) {
             $painting = $repository->find($id);
-            $dataPanier [] = [
+            $dataPanier[] = [
                 'painting' => $painting,
                 'quantity' => $quantity
             ];
-            $total += $painting->getPrice() * $quantity;
+            $total += ($painting->getPrice()) * $quantity;
     }
+        dd($session);
+        /*
         return $this->render('user/cart.html.twig', [
             'dataPanier' => $dataPanier,
             'total' => $total,
         ]);
+        */
     }
 
 

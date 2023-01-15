@@ -19,7 +19,6 @@
             {% for element in dataPanier %}
                 <tr>
                     <td>{{ element.painting.title }}</td>
-
                     <td class="text-end">{{ element.painting.price }} €</td>
                     <td>{{ element.quantity }}</td>
                     <td class="text-end">{{ element.quantity * element.painting.price }} €</td>
