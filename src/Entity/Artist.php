@@ -158,4 +158,10 @@ class Artist
         }
         return $this;
     }
+
+    // EAsyAdmin - classes relationnelles
+    public function __toString(): string
+    {
+        return $this->lastName . ' ' . $this->firstName;
+    }
 }

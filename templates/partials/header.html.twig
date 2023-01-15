@@ -41,6 +41,8 @@
                             <li><a class="dropdown-item" href="{{ path('app_view_profile') }}">Voir mon profil</a></li>
                             <li><a class="dropdown-item" href="{{ path('app_edit_profile') }}">Modifier mon profil</a></li>
                             <li><a class="dropdown-item" href="#">Modifier mon mot de passe</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="{{ path('app_wishlist') }}">Voir mes favoris</a></li>
                             <li><a class="dropdown-item" href="{{ path('app_cart') }}">Voir mon panier</a></li>
                             <li><hr class="dropdown-divider"></li>
                             {% if is_granted('ROLE_ADMIN') %}

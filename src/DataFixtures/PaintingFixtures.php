@@ -5,7 +5,9 @@ namespace App\DataFixtures;
 use App\Entity\Artist;
 use App\Entity\Category;
 use App\Entity\Painting;
+use App\Entity\PaintingLike;
 use App\Entity\Technical;
+use App\Entity\User;
 use Cocur\Slugify\Slugify;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
@@ -23,12 +25,13 @@ class PaintingFixtures extends Fixture implements DependentFixtureInterface
         $technicals = $manager->getRepository(Technical::class)->findAll();
         $categories = $manager->getRepository(Category::class)->findAll();
         $artists = $manager->getRepository(Artist::class)->findAll();
+        $users = $manager->getRepository(User::class)->findAll();
         $slugify = new Slugify();
 
         $nbHeight= count($this->heights);
         $nbWidth = count($this->widths);
 
-        for($i=1; $i <= 59 ; $i++)
+        for($i=1; $i <= 50 ; $i++)
         {
             $painting = new Painting();
             $title = $faker->words(2, true);
@@ -46,6 +49,13 @@ class PaintingFixtures extends Fixture implements DependentFixtureInterface
                         ->setArtist($artists [$faker->numberBetween(0, (count($artists) - 1))])
                         ->setSlug($slugify->slugify($title));
             $manager->persist($painting);
+
+            for( $j = 1; $j < mt_rand(0, 15); $j++) {
+                $like = new PaintingLike();
+                $like ->setPainting($painting)
+                      ->setUser($users [$faker->numberBetween(0, (count($users) -1))]);
+                $manager->persist($like);
+            }
         }
         $manager->flush();
     }

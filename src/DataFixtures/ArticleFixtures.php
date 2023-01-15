@@ -24,6 +24,7 @@ class ArticleFixtures extends Fixture
                     ->setContent($faker->paragraphs(2, true))
                     ->setCreatedAt(new \DateTimeImmutable(date_format($date, "d-m-Y")))
                     ->setImageName($i . '.jpg')
+                    ->setIsPublished($faker->boolean(80))
                     ->setSlug($slugify->slugify($article->getName()));
 
             $manager->persist($article);

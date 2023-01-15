@@ -38,10 +38,9 @@
                             <p>{{ painting.smallDescription | capitalize}}</p>
                             <h4 class="mt-4">Informations</h4>
                             <p class="description ">
-                                Date de création : {{ painting.created | date('d/m/y') }}<br>
-                                Dimensions du tableau : {{ painting.height }}
-                                x {{ painting.width }}
-                                cm<br>
+                                Auteur : {{ painting.artist.lastName | capitalize }} {{ painting.artist.firstName | capitalize }}<br>
+                                Date de création : {{ painting.created | date('d-m-Y') }}<br>
+                                Dimensions du tableau : {{ painting.height }} X {{ painting.width }} cm<br>
                                 Courant artistique : {{ painting.category.name }}<br>
                                 Technique utilisée: {{ painting.technical.name }}<br>
                             </p>
@@ -55,19 +54,25 @@
                 </div>
                 <!-- commentaires -->
                 <div class="tab-pane fade" id="comments">
-                    <h4 class="my-5">Liste des commentaires</h4>
-                    <div class="card">
-                        {% for comment in comments %}
-                            <div class="card-body">
-                                <div class="card my-2">
-                                    <div class="card-body">
-                                        <p class="fw-bolder">{{ comment.title | capitalize }}</p>
-                                        <p>{{ comment.content }}</p>
+                    {% if comments is empty %}
+                        <h4>Aucun commentaire n'a encore été publié.</h4>
+                    {% else %}
+                        <h4 class="my-5">Liste des commentaires</h4>
+                        <div class="card">
+                            {% for comment in comments %}
+                                <div class="card-body">
+                                    <div class="card my-2">
+                                        <div class="card-body">
+                                            <p class="fw-bolder">{{ comment.title | capitalize }}</p>
+                                            <p>De : {{ comment.user.lastName | capitalize }} {{ comment.user.firstName | capitalize }}</p>
+                                            <p>{{ comment.content }}</p>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        {% endfor %}
-                    </div>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                    {% if is_('ROLE_USER') %}
                     <p>
                         <button class="offset-1 btn btn-primary px-4 py-2 fs-5 my-5" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-expanded="false" aria-controls="collapseWidthExample">
                            Nouveau commentaire
@@ -78,6 +83,11 @@
                             {{ form(form) }}
                         </div>
                     </div>
+                    {% else %}
+                    <h4 class="my-5">Vous devez être connecté</h4>
+                    <a href="{{ path('app_login') }}" type="button" class="btn btn-dark btn-sm"><i class="icofont-sign-in"></i> S'identifier</a>
+                    <a href="{{path('app_registration')}}" class="btn btn-dark btn-sm"><i class="icofont-user-alt-4"></i> S'inscrire</a>
+                    {% endif %}
                 </div>
             </div>
             <div>

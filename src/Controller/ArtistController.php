@@ -49,8 +49,14 @@ class ArtistController extends AbstractController
      * @return Response
      */
     #[Route('/artist/{slug}', name: 'app_artist')]
-    public function artist(Artist $artist): Response
+    public function artist(Artist $artist, PaintingRepository $paintingRepository): Response
     {
+
+        $paintings = $paintingRepository->findBy(
+            [],
+            ['title' => 'ASC']
+        );
+
         return $this->render('artist/artist.html.twig', [
             'artist' => $artist,
         ]);

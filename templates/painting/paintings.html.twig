@@ -1,9 +1,8 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Toutes nos oeuvres - {{ parent() }}{% endblock %}
+{% block title %}Toutes les oeuvres - {{ parent() }}{% endblock %}
 
 {% block body %}
-
     <main class="container paintings">
         <!-- Categories -->
         <section id="paintings-gallery">
@@ -31,11 +30,20 @@
                                 <div class="card-body" style="height: 200px; max-height: 200px;">
                                     <img alt="" src="{{ asset('img/paintings/' ~ painting.imageName) }}">
                                     <p class="card-text">
-                                    <h5 class="card-subtitle my-3">{{ painting.category.name }}</h5>
+                                    <h5 class="card-subtitle my-3"> {{painting.artist.lastName }} {{ painting.artist.firstName }}</h5>
                                     <p>{{ painting.smallDescription|capitalize }}</p>
                                     <div class="text-center">
                                         <a class="btn my-1 btn-primary btn-sm" href="{{ path('app_painting', {slug: painting.slug}) }}">Détails</a>
-                                        <a class="btn my-1 btn-primary btn-sm" href=""><i class="icofont-shopping-cart"></i></a>
+                                        <a class="btn my-1 btn-primary btn-sm" href="{{ path('app_cart_add', {id: painting.id}) }}"><i class="icofont-shopping-cart"></i></a>
+                                        <a class="btn my-1 btn-link btn-sm js-like" style="text-decoration: none" href="{{ path('app_painting_like', {id: painting.id}) }}">
+
+                                            {% if app.user and painting.isLikedByUser(app.user) %}
+                                                <i class="fas fa-heart"></i>
+                                            {% else %}
+                                                <i class="far fa-heart"></i>
+                                            {% endif %}
+                                            <span class="js-likes">{{ painting.likes | length }}</span>
+                                        </a>
                                     </div>
                                 </div>
                             </div>
@@ -48,6 +56,45 @@
         <!-- End Categories -->
     </main>
 
+    {% block javascripts %}
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+        <script>
+            function onClickBtnLike(event) {
+                event.preventDefault();
+
+                const url = this.href;
+                const spanCount = this.querySelector('span.js-likes');
+                const icone = this.querySelector('i');
+
+                // .then = promesse : si ça se passe bien
+                axios.get(url).then(function(response){
+                    spanCount.textContent = response.data.likes;
+
+                    // si tu contiens la classe fas et que tu as le pouce rempli, au click le pouce sera vide (unlike)
+                    if(icone.classList.contains('fas')) {
+                        icone.classList.replace('fas', 'far');
+                    } else {
+                        icone.classList.replace('far', 'fas');
+                    }
+                    // Si ça n'a pas fonctionné
+                }).catch(function(error){
+                    if(error.response.status === 403 ) {
+                        // Pour une erreur liée à la connexion du user
+                        window.alert("Vous ne pouvez pas liker une peinture si vous êtes déconnectés.");
+                    } else {
+                        // Pour tout autre type d'erreur
+                        window.alert("une erreur s'est produite, réessayez plus tard!");
+                    }
+                })
+            }
+            document.querySelectorAll('a.js-like').forEach(function(link){
+                link.addEventListener('click', onClickBtnLike);
+            })
+        </script>
+    {% endblock %}
+
+    {# FILTERIZR #}
     <script src="{{ asset('js/jquery.min.js') }}"></script>
     <script src="{{ asset('js/jquery.filterizr.min.js') }}"></script>
     <script>

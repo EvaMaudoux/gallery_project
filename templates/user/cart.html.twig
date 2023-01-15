@@ -4,58 +4,52 @@
 
 {% block body %}
 
-    <main class="container-cart offset-3">
-        <table class="table">
-            <thead>
-            <tr>
-                <th>Produit</th>
-                <th>Prix</th>
-                <th>Quantité</th>
-                <th>Total</th>
-                <th>Actions</th>
-            </tr>
-            </thead>
-            <tbody>
-            {% for element in dataPanier %}
+    <main class="container-cart offset-2 my-4">
+        <div>
+            <a href="{{ path('app_paintings') }}" class="btn btn-outline-dark my-4 mx-2">Retour aux oeuvres</a>
+            <a href="{{ path('app_wishlist') }}" class="btn btn-outline-dark my-4 mx-2">Retour aux favoris</a>
+        </div>
+        {% if dataPanier is empty %}
+            <h4>Votre panier est actuellement vide.</h4>
+        {% else %}
+            <table class="table">
+                <thead>
                 <tr>
-                    <td>{{ element.painting.title }}</td>
-                    <td class="text-end">{{ element.painting.price }} €</td>
-                    <td>{{ element.quantity }}</td>
-                    <td class="text-end">{{ element.quantity * element.painting.price }} €</td>
-                    {#<td>
-                        {#
-                        <a href="{{path("app_cart_add", {id: element.painting.id})}}" class="btn btn-success">
-                            <i class="bi bi-cart-plus"></i>
-                        </a>
-
-                        <a href="{{path("cart_remove", {id: element.painting.id})}}" class="btn btn-warning">
-                            <i class="bi bi-cart-dash"></i>
-                        </a>
-                        <a href="{{path("cart_delete", {id: element.painting.id})}}" class="btn btn-danger">
-                            <i class="bi bi-cart-x"></i>
-                        </a>
-                        #}
-                    </td>
+                    <th>Tableau</th>
+                    <th>Prix du tableau</th>
+                    <th>Quantité</th>
+                    <th>Total</th>
+                    <th>Actions</th>
                 </tr>
+                </thead>
+                <tbody>
+                {% for element in dataPanier %}
+                    <tr>
+                        <td >{{ element.painting.title | capitalize }}</td>
+                        <td>{{element.painting.price | format_currency('EUR', locale='fr') }}</td>
+                        <td>{{ element.quantity }}</td>
+                        <td class="text-end">{{ (element.quantity * element.painting.price) | format_currency('EUR', locale='fr') }}</td>
+                        <td>
+                            <a href="{{path("app_cart_del", {id: element.painting.id})}}" class="btn btn-danger">
+                                <i class="icofont-ui-delete"></i>
+                            </a>
+                        </td>
+                    </tr>
 
-            {% else %} {# for .. esle = si le tableau est vide #}
+                {% else %} {# si le tableau est vide #}
+                    <tr>
+                        <td colspan="5" class="text-center">Votre panier est vide</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+                <tfoot>
                 <tr>
-                    <td colspan="5" class="text-center">Votre panier est vide</td>
+                    <td colspan="3">Montant total à payer</td>
+                    <td class="text-end">{{ total | format_currency('EUR', locale='fr')}}</td>
                 </tr>
-            {% endfor %}
-            </tbody>
-            <tfoot>
-            <tr>
-                <td colspan="3">Total</td>
-                <td class="text-end">{{ total }} €</td>
-                <td>
-                    <a href="" class="btn btn-danger">
-                        <i class="bi bi-cart-x"></i>
-                    </a>
-                </td>
-            </tr>
-            </tfoot>
-        </table>
+                </tfoot>
+            </table>
+        {% endif %}
     </main>
 
 {% endblock %}

@@ -3,10 +3,12 @@
 namespace App\Entity;
 
 use App\Repository\PaintingRepository;
+use App\Entity\Category;
 use Cocur\Slugify\Slugify;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
+use App\Entity\User;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
@@ -84,9 +86,13 @@ class Painting
     #[ORM\Column]
     private ?int $price = null;
 
+    #[ORM\OneToMany(mappedBy: 'painting', targetEntity: PaintingLike::class)]
+    private Collection $likes;
+
     public function __construct()
     {
         $this->comment = new ArrayCollection();
+        $this->likes = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -279,4 +285,52 @@ class Painting
         return $this;
     }
 
+    /**
+     * @return Collection<int, PaintingLike>
+     */
+    public function getLikes(): Collection
+    {
+        return $this->likes;
+    }
+
+    public function addLike(PaintingLike $like): self
+    {
+        if (!$this->likes->contains($like)) {
+            $this->likes->add($like);
+            $like->setPainting($this);
+        }
+
+        return $this;
+    }
+
+    public function removeLike(PaintingLike $like): self
+    {
+        if ($this->likes->removeElement($like)) {
+            // set the owning side to null (unless already changed)
+            if ($like->getPainting() === $this) {
+                $like->setPainting(null);
+            }
+        }
+
+        return $this;
+    }
+
+
+    /** Permet de savoir si la peinture est likée par un user
+     * @param \App\Entity\User $user
+     * @return bool
+     */
+    public function isLikedByUser(User $user) : bool {
+        foreach($this->likes as $like) {
+            if($like->getUser() === $user)
+                return true;
+            }
+            return false;
+    }
+
+    // EAsyAdmin - classes relationnelles
+    public function __toString(): string
+    {
+        return ucFirst($this->title);
+    }
 }

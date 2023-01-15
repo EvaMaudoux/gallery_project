@@ -5,8 +5,11 @@ namespace App\Controller;
 
 use App\Entity\Painting;
 use App\Entity\Comment;
+use App\Entity\PaintingLike;
+use App\Entity\User;
 use App\Form\CommentType;
 use App\Repository\CommentRepository;
+use App\Repository\PaintingLikeRepository;
 use App\Repository\PaintingRepository;
 use App\Repository\CategoryRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -77,6 +80,64 @@ class PaintingController extends AbstractController
             'painting' => $painting,
             'comments' => $comments,
             'form' => $form->createView(),
+        ]);
+    }
+
+    /** Permet de liker ou déliker une peinture
+     * @param Painting $painting
+     * @param EntityManagerInterface $manager
+     * @param PaintingLikeRepository $likeRepository
+     * @return Response
+     */
+    #[Route('/painting/{id}/like', name: 'app_painting_like')]
+    public function like (Painting $painting, EntityManagerInterface $manager, PaintingLikeRepository $likeRepository) : Response
+    {
+        $user = $this->getUser();
+
+        // Si l'utilisateur n'est pas connecté
+        if(!$user) return $this->json([
+            'code' => 403,
+            'message' => 'Accès non autorisé. Connecte-toi!'
+        ], 403);
+
+        // Si la peinture est likée par cet user
+        if ($painting->isLikedByUser($user)) {
+            $like = $likeRepository->findOneBy([
+                'painting' => $painting,
+                'user' => $user,
+            ]);
+
+            $manager->remove($like);
+            $manager->flush();
+
+            return $this->json([
+                'code' => 200,
+                'message' => 'le like a bien été supprimé',
+                'likes' => $likeRepository->count(['painting' =>$painting])
+            ], 200);
+        }
+
+        $like = new PaintingLike();
+        $like->setPainting($painting)
+            ->setUser($user);
+
+        $manager->persist($like);
+        $manager->flush();
+
+         return $this->json([
+            'code' => 200,
+            'message' => 'le like a bien été ajouté',
+            'likes' =>  $likeRepository->count(['painting' =>$painting])
+        ], 200);
+    }
+
+    #[Route('/wishlist', name: 'app_wishlist')]
+    public function paintingsLiked (PaintingRepository $repository) {
+        $user = $this->getUser();
+
+        $paintings = $repository->findLikedByUser($user);
+        return $this->render('user/wishlist.html.twig', [
+            'paintingsLiked' => $paintings,
         ]);
     }
 }

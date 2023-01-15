@@ -22,7 +22,7 @@ class ArticleController extends AbstractController
     public function articles(ArticleRepository $articleRepository, PaginatorInterface $paginator, Request $request): Response
     {
         $article = $articleRepository->findBy(
-            [],
+            ['isPublished' => true],
             ['name' => 'ASC']
         );
 

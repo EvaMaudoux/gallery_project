@@ -39,20 +39,18 @@ class PaintingRepository extends ServiceEntityRepository
         }
     }
 
-//    /**
-//     * @return Painting[] Returns an array of Painting objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('p')
-//            ->andWhere('p.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('p.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+    public function findLikedByUser($user)
+    {
+        $em = $this->getEntityManager();
+        $query = $em->createQuery(
+            'SELECT p
+             FROM App\Entity\Painting p
+             JOIN p.likes l
+             WHERE l.user = :user'
+        )->setParameter('user', $user);
+
+        return $query->getResult();
+    }
 
 //    public function findOneBySomeField($value): ?Painting
 //    {
@@ -63,4 +61,5 @@ class PaintingRepository extends ServiceEntityRepository
 //            ->getOneOrNullResult()
 //        ;
 //    }
+
 }

@@ -14,7 +14,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class CartController extends AbstractController
 {
     #[Route('/cart', name: 'app_cart')]
-    public function cart(PaintingRepository $repository, SessionInterface $session): Response
+    public function cart(SessionInterface $session, PaintingRepository $repository): Response
     {
         $panier = $session->get('panier', []);
 
@@ -31,13 +31,12 @@ class CartController extends AbstractController
             ];
             $total += ($painting->getPrice()) * $quantity;
     }
-        dd($session);
-        /*
+
         return $this->render('user/cart.html.twig', [
             'dataPanier' => $dataPanier,
             'total' => $total,
         ]);
-        */
+
     }
 
 
@@ -57,7 +56,25 @@ class CartController extends AbstractController
         // sauvegarde des données du nouveau panier dans la session
         $session->set('panier', $panier);
 
-         dd($session);
-        // return $this->redirectToRoute('app_cart');
+        // dd($session);
+        return $this->redirectToRoute('app_cart');
+    }
+
+
+    #[Route('/cart/del/{id}', name: 'app_cart_del')]
+    public function delCart(Painting $painting, SessionInterface $session)
+    {
+        // récupération des données contenues dans le panier actuel
+        $panier = $session->get('panier', []);
+        $id = $painting->getId();
+
+        if (!empty($panier[$id])) {
+            unset($panier[$id]);
+        }
+
+        // sauvegarde des données du nouveau panier dans la session
+        $session->set('panier', $panier);
+
+        return $this->redirectToRoute('app_cart');
     }
 }

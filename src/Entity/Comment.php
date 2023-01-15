@@ -28,6 +28,9 @@ class Comment
     #[ORM\ManyToOne(inversedBy: 'comment')]
     private ?Painting $painting = null;
 
+    #[ORM\ManyToOne(inversedBy: 'comments')]
+    private ?User $user = null;
+
 
     public function getId(): ?int
     {
@@ -68,5 +71,23 @@ class Comment
         $this->painting = $painting;
 
         return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    // EAsyAdmin - classes relationnelles
+    public function __toString(): string
+    {
+        return $this->title;
     }
 }

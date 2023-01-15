@@ -22,6 +22,9 @@ class Slider
     #[ORM\Column]
     private ?\DateTimeImmutable $updated_at = null;
 
+    #[ORM\Column]
+    private ?bool $isSelected = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -51,19 +54,16 @@ class Slider
         return $this;
     }
 
-    // Méthodes Vish
-    public function setImageFile(?File $imageFile = null): void
+    public function isIsSelected(): ?bool
     {
-        $this->imageFile = $imageFile;
-
-        if (null !== $imageFile) {
-            $this->updatedAt = new \DateTimeImmutable();
-        }
+        return $this->isSelected;
     }
 
-    public function getImageFile(): ?File
+    public function setIsSelected(bool $isDisabled): self
     {
-        return $this->imageFile;
+        $this->isSelected = $isDisabled;
+
+        return $this;
     }
 
 }

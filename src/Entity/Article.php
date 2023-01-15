@@ -33,6 +33,9 @@ class Article
     #[ORM\Column(length: 255)]
     private ?string $slug = null;
 
+    #[ORM\Column]
+    private ?bool $isPublished = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -116,4 +119,21 @@ class Article
         $slugify = new Slugify();
         $this->slug = $slugify->slugify($this->name);
     }
+
+    public function isPublished(): ?bool
+    {
+        return $this->isPublished;
+    }
+
+    public function setIsPublished(bool $isDisabled): self
+    {
+        $this->isPublished = $isDisabled;
+
+        return $this;
+    }
+
+    public function __toString(): string
+{
+    return $this->name;
+}
 }

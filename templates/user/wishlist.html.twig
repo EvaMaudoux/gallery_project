@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Votre wishlist{% endblock %}
+
+{% block body %}
+
+    <main class="container-cart offset-2 my-4">
+        {% if paintingsLiked is empty %}
+            <h4>Vous n'aimez aucun peinture pour le moment <i class="fa-solid fa-heart-crack"></i></h4>
+        {% else %}
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Tableau</th>
+                    <th>Titre</th>
+                    <th>Auteur</th>
+                    <th>Prix</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for painting in paintingsLiked %}
+                    <tr>
+                        <td><img src="{{ asset('img/paintings/') ~ painting.imageName }}" alt="{{ painting.title }}" style="width:30%"></td>
+                        <td>{{ painting.title | capitalize }}</td>
+                        <td>{{ painting.artist.lastName | capitalize }}{{ painting.artist.firstName | capitalize }}</td>
+                        <td>{{painting.price | format_currency('EUR', locale='fr') }}</td>
+                        <td><a class="btn btn-secondary btn-sm" href="{{ path('app_painting', {slug: painting.slug}) }}">Détails</a>
+                            <a href="{{ path('app_cart_add', {'id': painting.id}) }}" type="button" class="btn btn-outline-dark btn-sm">Ajouter au panier</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        {%  endif %}
+    </main>
+
+{% endblock %}

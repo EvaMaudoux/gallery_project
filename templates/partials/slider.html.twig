@@ -1,34 +1,15 @@
 {% block slider %}
-        <div id="hero-carousel" class="carousel slide" data-bs-ride="carousel">
-            <div class="carousel-inner">
+<div id="hero-carousel" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+        {% for slide in slider %}
                 <div class="carousel-item active c-item">
-                    <img class="d-block w-100 c-img" src="{{ asset('img/slider/1.jpg') }}" alt="First slide">
+                    <img class="d-block w-100 c-img" src="{{ asset('img/slider/' ~ slide.imageName) }}" alt="">
                     <div class="carousel-caption d-none d-md-block">
                         <h1 class="lead fw-bold">Galerie Maudoux</h1>
                         <h2 class="text-uppercase lead">Découvrez l'art que vous aimez</h2>
                     </div>
                 </div>
-                <div class="carousel-item c-item">
-                    <img class="d-block w-100 c-img" src="{{ asset('img/slider/2.jpg') }}" alt="Second slide">
-                    <div class="carousel-caption d-none d-md-block">
-                        <h1 class="lead fw-bold">Galerie Maudoux</h1>
-                        <h2 class="text-uppercase lead">Découvrez l'art que vous aimez</h2>
-                    </div>
-                </div>
-                <div class="carousel-item c-item">
-                    <img class="d-block w-100 c-img" src="{{ asset('img/slider/3.jpg') }}" alt="Third slide">
-                    <div class="carousel-caption d-none d-md-block">
-                        <h1 class="lead fw-bold">Galerie Maudoux</h1>
-                        <h2 class="text-uppercase lead">Découvrez l'art que vous aimez</h2>
-                    </div>
-                </div>
-                <div class="carousel-item c-item">
-                    <img class="d-block w-100 c-img" src="{{ asset('img/slider/4.jpg') }}" alt="Third slide">
-                    <div class="carousel-caption d-none d-md-block">
-                        <h1 class="lead fw-bold">Galerie Maudoux</h1>
-                        <h2 class="text-uppercase lead">Découvrez l'art que vous aimez</h2>
-                    </div>
-                </div>
+         {% endfor %}
             </div>
         </div>
     {% endblock %}
