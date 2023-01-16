@@ -4,13 +4,9 @@
 
 {% block body %}
 
-    <main class="container-cart offset-2 my-4">
-        <div>
-            <a href="{{ path('app_paintings') }}" class="btn btn-outline-dark my-4 mx-2">Retour aux oeuvres</a>
-            <a href="{{ path('app_wishlist') }}" class="btn btn-outline-dark my-4 mx-2">Retour aux favoris</a>
-        </div>
+    <main class="container-cart offset-2 my-5">
         {% if dataPanier is empty %}
-            <h4>Votre panier est actuellement vide.</h4>
+            <h4>Votre panier est actuellement vide</h4>
         {% else %}
             <table class="table">
                 <thead>
@@ -19,7 +15,7 @@
                     <th>Prix du tableau</th>
                     <th>Quantité</th>
                     <th>Total</th>
-                    <th>Actions</th>
+                    <th>Suppression</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -27,7 +23,7 @@
                     <tr>
                         <td >{{ element.painting.title | capitalize }}</td>
                         <td>{{element.painting.price | format_currency('EUR', locale='fr') }}</td>
-                        <td>{{ element.quantity }}</td>
+                        <td class="qtt">{{ element.quantity }}</td>
                         <td class="text-end">{{ (element.quantity * element.painting.price) | format_currency('EUR', locale='fr') }}</td>
                         <td>
                             <a href="{{path("app_cart_del", {id: element.painting.id})}}" class="btn btn-danger">
@@ -46,10 +42,19 @@
                 <tr>
                     <td colspan="3">Montant total à payer</td>
                     <td class="text-end">{{ total | format_currency('EUR', locale='fr')}}</td>
+                    <td>
+                        <a href="{{path("app_cart_delAll")}}" class="btn btn-danger">
+                            <i class="icofont-ui-delete"></i>
+                        </a>
+                    </td>
                 </tr>
                 </tfoot>
             </table>
         {% endif %}
+        <div>
+            <a href="{{ path('app_paintings') }}" class="btn btn-outline-dark my-4 mx-2">Retour aux oeuvres</a>
+            <a href="{{ path('app_wishlist') }}" class="btn btn-outline-dark my-4 mx-2">Retour aux favoris</a>
+        </div>
     </main>
 
 {% endblock %}

@@ -16,6 +16,10 @@ body {
   color: #1a1e21;
 }
 
+.msg-flash .toast-header {
+  background-color: #cfa477;
+}
+
 p {
   font-size: 1.2rem;
 }
@@ -147,8 +151,14 @@ a:hover {
   width: 100%;
   height: auto;
 }
+#paintings-gallery .filter-container .filtr-item .btn {
+  margin: 0 5px;
+}
 #paintings-gallery .filter-container .filtr-item .btn:active {
   background-color: #c28b51;
+}
+#paintings-gallery .filter-container .filtr-item .btn:hover {
+  color: #feebde;
 }
 #paintings-gallery .card-body a {
   margin-top: 10px;
@@ -183,21 +193,31 @@ a:hover {
   background-color: #c28b51;
 }
 
-.container-articles .card-header {
+.container-articles .card-header, .container-artists .card-header {
   font-size: 1.4rem;
   background-color: #f0e3d5;
 }
-.container-articles .card-footer {
+.container-articles .card-footer, .container-artists .card-footer {
   background-color: #f0e3d5;
 }
-.container-articles .card {
+.container-articles .card, .container-artists .card {
   margin: 4rem 0;
 }
-.container-articles .card .btn:active, .container-articles .card #paintings-gallery .controls-filter .btn:active, #paintings-gallery .controls-filter .container-articles .card .btn:active {
+.container-articles .card img, .container-artists .card img {
+  width: 130%;
+}
+.container-articles .card .desc, .container-artists .card .desc {
+  margin-left: 3rem;
+}
+.container-articles .card .btn:active, .container-articles .card #paintings-gallery .controls-filter .btn:active, #paintings-gallery .controls-filter .container-articles .card .btn:active, .container-artists .card .btn:active, .container-artists .card #paintings-gallery .controls-filter .btn:active, #paintings-gallery .controls-filter .container-artists .card .btn:active {
   background-color: #c28b51;
 }
-.container-articles img {
-  width: 130%;
+
+.container-artist .card .paint {
+  color: #cfa477;
+}
+.container-artist .card .btn, .container-artist .card #paintings-gallery .controls-filter .btn, #paintings-gallery .controls-filter .container-artist .card .btn {
+  margin-top: 3rem;
 }
 
 .container-article h4 {
@@ -251,6 +271,32 @@ nav .img-user {
 .container-profile img {
   width: 75%;
   border-radius: 50%;
+}
+
+.container-wishlist th, .container-wishlist td, .container-cart th, .container-cart td {
+  text-align: left;
+}
+.container-wishlist th, .container-cart th {
+  font-size: 1.3rem;
+  text-transform: uppercase;
+  padding-bottom: 1.5rem;
+  color: #cfa477;
+}
+.container-wishlist td, .container-cart td {
+  font-size: 1.2rem;
+  padding-top: 2.5rem;
+}
+.container-wishlist td .btn, .container-wishlist td #paintings-gallery .controls-filter .btn, #paintings-gallery .controls-filter .container-wishlist td .btn, .container-cart td .btn, .container-cart td #paintings-gallery .controls-filter .btn, #paintings-gallery .controls-filter .container-cart td .btn {
+  margin-right: 1.5rem;
+  font-size: 1.2rem;
+  padding: 0.5rem;
+}
+.container-wishlist td .btn i, .container-wishlist td #paintings-gallery .controls-filter .btn i, #paintings-gallery .controls-filter .container-wishlist td .btn i, .container-cart td .btn i, .container-cart td #paintings-gallery .controls-filter .btn i, #paintings-gallery .controls-filter .container-cart td .btn i {
+  font-size: 1.5rem;
+}
+
+.container-cart a {
+  margin-left: 3.5rem;
 }
 
 #admin-paintings h3 {

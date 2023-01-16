@@ -22,32 +22,34 @@
                 <div class="col-md-12 filter-container" style="overflow: hidden;">
                     <!-- Card -->
                     {% for painting in paintings %}
-                        <div class="col-md-4 filtr-item" data-category="{{ painting.category.id }}" data-sort="value">
-                            <div class="card m-4" style="min-height: 500px !important;">
-                                <div class="card-header bg-light">
-                                    <h4 class="text-center">{{ painting.title|capitalize }}</h4>
-                                </div>
-                                <div class="card-body" style="height: 200px; max-height: 200px;">
-                                    <img alt="" src="{{ asset('img/paintings/' ~ painting.imageName) }}">
-                                    <p class="card-text">
-                                    <h5 class="card-subtitle my-3"> {{painting.artist.lastName }} {{ painting.artist.firstName }}</h5>
-                                    <p>{{ painting.smallDescription|capitalize }}</p>
-                                    <div class="text-center">
-                                        <a class="btn my-1 btn-primary btn-sm" href="{{ path('app_painting', {slug: painting.slug}) }}">Détails</a>
-                                        <a class="btn my-1 btn-primary btn-sm" href="{{ path('app_cart_add', {id: painting.id}) }}"><i class="icofont-shopping-cart"></i></a>
-                                        <a class="btn my-1 btn-link btn-sm js-like" style="text-decoration: none" href="{{ path('app_painting_like', {id: painting.id}) }}">
+                        {% if not painting.isSold %}
+                            <div class="col-md-4 filtr-item" data-category="{{ painting.category.id }}" data-sort="value">
+                                <div class="card m-4" style="min-height: 500px !important;">
+                                    <div class="card-header bg-light">
+                                        <h4 class="text-center">{{ painting.title|capitalize }}</h4>
+                                    </div>
+                                    <div class="card-body" style="height: 200px; max-height: 200px;">
+                                        <img alt="" src="{{ asset('img/paintings/' ~ painting.imageName) }}">
+                                        <p class="card-text">
+                                        <h5 class="card-subtitle my-3"> {{painting.artist.lastName }} {{ painting.artist.firstName }}</h5>
+                                        <p>{{ painting.smallDescription|capitalize }}</p>
+                                        <div class="text-center">
+                                            <a class="btn my-1 btn-primary btn-sm" href="{{ path('app_painting', {slug: painting.slug}) }}">Détails</a>
+                                            <a class="btn my-1 btn-primary btn-sm" href="{{ path('app_cart_add', {id: painting.id}) }}"><i class="icofont-shopping-cart"></i></a>
+                                            <a class="btn my-1 btn-link btn-sm js-like" style="text-decoration: none" href="{{ path('app_painting_like', {id: painting.id}) }}">
 
-                                            {% if app.user and painting.isLikedByUser(app.user) %}
-                                                <i class="fas fa-heart"></i>
-                                            {% else %}
-                                                <i class="far fa-heart"></i>
-                                            {% endif %}
-                                            <span class="js-likes">{{ painting.likes | length }}</span>
-                                        </a>
+                                                {% if app.user and painting.isLikedByUser(app.user) %}
+                                                    <i class="fas fa-heart"></i>
+                                                {% else %}
+                                                    <i class="far fa-heart"></i>
+                                                {% endif %}
+                                                <span class="js-likes">{{ painting.likes | length }}</span>
+                                            </a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        {% endif %}
                     {% endfor %}
                     <!-- End card -->
                 </div>

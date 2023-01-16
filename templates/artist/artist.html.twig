@@ -5,18 +5,23 @@
 
 {% block body %}
 
-    <main class="container-article m-3" style="max-width: 1500px">
+    <main class="container-artist m-3" style="max-width: 1500px">
         <div class="card mb-3 mt-5 offset-2">
             <div class="row g-0 align-items-center" >
                 <div class="col-md-5 ">
                     <img src="{{ asset('/img/artist/' ~ artist.imageName) }}" class="img-fluid rounded-start" alt="{{ artist.lastName }}">
                 </div>
-                <div class="col-7">
-                    <div class="card-body text-lg-center ">
-                        <h4 class="pt-4 card-title lead fw-bolder">{{ artist.lastName|capitalize }} {{ artist.firstName|capitalize }}</h4>
+                <div class="col-md-7 m">
+                    <div class="card-body text-lg-center mx-3">
+                        <h4 class="pt-4 card-title lead fw-bolder fs-4">{{ artist.lastName| upper }} {{ artist.firstName| upper }}</h4>
                         <p class="card-text pt-2 lead"><small class="text-muted">Né le : {{ artist.birthDate | date('d/m/Y') }}</small></p>
-                        <p class="card-text p-3 lead">{{ artist.biography }}</p>
-                        <p class="card-text pt-2 lead"><small class="text-muted">Peintures réalisées: </small></p>
+                        <p class="card-text p-2 lead">{{ artist.biography }}</p>
+                        {% if artist.painting is not empty %}
+                        <ul class="card-text paint fw-bolder fs-4 pt-2 lead">Peintures réalisées:</ul>
+                            {% for paint in artist.painting %}
+                                <li class="lead fs-5" style="list-style-type: none; font-size: 1.1rem;"> {{ paint.title | capitalize}}</li>
+                            {% endfor %}
+                        {% endif %}
                         <div>
                             <a class="btn btn-outline-dark" href="{{ path('app_artists') }}"> Retour aux artistes</a>
                         </div>

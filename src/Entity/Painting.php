@@ -89,6 +89,9 @@ class Painting
     #[ORM\OneToMany(mappedBy: 'painting', targetEntity: PaintingLike::class)]
     private Collection $likes;
 
+    #[ORM\Column]
+    private ?bool $isSold = null;
+
     public function __construct()
     {
         $this->comment = new ArrayCollection();
@@ -332,5 +335,17 @@ class Painting
     public function __toString(): string
     {
         return ucFirst($this->title);
+    }
+
+    public function isIsSold(): ?bool
+    {
+        return $this->isSold;
+    }
+
+    public function setIsSold(bool $isSold): self
+    {
+        $this->isSold = $isSold;
+
+        return $this;
     }
 }

@@ -164,4 +164,5 @@ class Artist
     {
         return $this->lastName . ' ' . $this->firstName;
     }
+
 }

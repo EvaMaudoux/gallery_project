@@ -10,6 +10,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\CollectionField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\MoneyField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
@@ -49,6 +50,7 @@ class PaintingCrudController extends AbstractCrudController
             AssociationField::new('technical', 'Technique'),
             IntegerField::new('height', 'Hauteur'),
             IntegerField::new('width', 'Largeur'),
+            BooleanField::new('isSold', 'Vendu'),
             AssociationField::new('likes', 'Nombre de likes')->hideOnForm(),
             TextEditorField::new('smallDescription', 'Description'),
             TextEditorField::new('fullDescription', 'Description complète')

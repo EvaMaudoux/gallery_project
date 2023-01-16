@@ -13,7 +13,7 @@
 
     <main class="container painting">
         <section id="detail">
-            <h2 class="mt-5"> {{ painting.title | capitalize }}</h2>
+            <h2 class="display-5 my-5"> {{ painting.title | capitalize }}</h2>
             <ul class="nav nav-tabs mt-4">
                 <li class="nav-item">
                     <a class="nav-link " data-bs-toggle="tab" href="#profil">Profil</a>
@@ -28,7 +28,7 @@
 
             <div id="tabContent" class="tab-content my-5">
                 <!-- profil -->
-                <div class="tab-pane fade" id="profil">
+                <div class="tab-pane fade show active" id="profil">
                     <div class="row">
                         <div class="col-md-5 my-3">
                             <img src="{{ asset('img/paintings/' ~ painting.imageName) }}" alt="" class="img-fluid">
@@ -64,7 +64,7 @@
                                     <div class="card my-2">
                                         <div class="card-body">
                                             <p class="fw-bolder">{{ comment.title | capitalize }}</p>
-                                            <p>De : {{ comment.user.lastName | capitalize }} {{ comment.user.firstName | capitalize }}</p>
+                                            <p class="text-decoration-underline">Auteur: {{ comment.user}}</p>
                                             <p>{{ comment.content }}</p>
                                         </div>
                                     </div>
@@ -72,7 +72,7 @@
                             {% endfor %}
                         </div>
                     {% endif %}
-                    {% if is_('ROLE_USER') %}
+                    {% if is_granted('ROLE_USER') %}
                     <p>
                         <button class="offset-1 btn btn-primary px-4 py-2 fs-5 my-5" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-expanded="false" aria-controls="collapseWidthExample">
                            Nouveau commentaire

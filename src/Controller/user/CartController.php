@@ -49,17 +49,16 @@ class CartController extends AbstractController
         $panier = $session->get('panier', []);
         $id = $painting->getId();
 
-        if (!empty($panier[$id])) {
-            $panier[$id]++;
-        } else {
-            $panier[$id] = 1;
-        }
-
         // sauvegarde des données du nouveau panier dans la session
         $session->set('panier', $panier);
 
+        $this->addFlash(
+            'Succes',
+            'Le tableau a bien été ajouté du panier!'
+        );
+
         // dd($session);
-        return $this->redirectToRoute('app_cart');
+        return $this->redirectToRoute('app_paintings');
     }
 
 
@@ -76,6 +75,19 @@ class CartController extends AbstractController
 
         // sauvegarde des données du nouveau panier dans la session
         $session->set('panier', $panier);
+        $this->addFlash(
+            'info',
+            'Le tableau a bien été retiré du panier!'
+        );
+
+        return $this->redirectToRoute('app_cart');
+    }
+
+    #[Route('/cart/delAll/', name: 'app_cart_delAll')]
+    public function delAll(SessionInterface $session)
+    {
+        // récupération des données contenues dans le panier actuel
+        $session->remove('panier');
 
         return $this->redirectToRoute('app_cart');
     }

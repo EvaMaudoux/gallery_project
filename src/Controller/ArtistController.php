@@ -40,7 +40,7 @@ class ArtistController extends AbstractController
 
         return $this->render('artist/artists.html.twig', [
             'artists'    => $pagination,
-            'paintings'       => $paintings
+            'paintings'  => $paintings
         ]);
    }
 
@@ -58,6 +58,7 @@ class ArtistController extends AbstractController
         );
 
         return $this->render('artist/artist.html.twig', [
+            'paintings' => $paintings,
             'artist' => $artist,
         ]);
     }

@@ -4,9 +4,9 @@
 
 {% block body %}
 
-    <main class="container-cart offset-2 my-4">
+    <main class="container-wishlist offset-2 my-5">
         {% if paintingsLiked is empty %}
-            <h4>Vous n'aimez aucun peinture pour le moment <i class="fa-solid fa-heart-crack"></i></h4>
+            <h4>Vous n'aimez aucun peinture pour le moment ... <i class="fa-solid fa-heart-crack"></i></h4>
         {% else %}
             <table class="table">
                 <thead>
@@ -21,18 +21,22 @@
                 <tbody>
                 {% for painting in paintingsLiked %}
                     <tr>
-                        <td><img src="{{ asset('img/paintings/') ~ painting.imageName }}" alt="{{ painting.title }}" style="width:30%"></td>
-                        <td>{{ painting.title | capitalize }}</td>
-                        <td>{{ painting.artist.lastName | capitalize }}{{ painting.artist.firstName | capitalize }}</td>
-                        <td>{{painting.price | format_currency('EUR', locale='fr') }}</td>
-                        <td><a class="btn btn-secondary btn-sm" href="{{ path('app_painting', {slug: painting.slug}) }}">Détails</a>
-                            <a href="{{ path('app_cart_add', {'id': painting.id}) }}" type="button" class="btn btn-outline-dark btn-sm">Ajouter au panier</a>
+                        <td class="col-3"><img src="{{ asset('img/paintings/') ~ painting.imageName }}" alt="{{ painting.title }}" style="width:30%"></td>
+                        <td class="col-2">{{ painting.title | capitalize }}</td>
+                        <td class="col-2">{{ painting.artist.lastName | capitalize }} {{ painting.artist.firstName | capitalize }}</td>
+                        <td class="col-2">{{painting.price | format_currency('EUR', locale='fr') }}</td>
+                        <td class="col-3"><a class="btn btn-secondary btn-sm" href="{{ path('app_painting', {slug: painting.slug}) }}">Voir</a>
+                            <a href="{{ path('app_cart_add', {'id': painting.id}) }}" type="button" class="btn btn-outline-dark btn-sm"><i class="icofont-shopping-cart"></i></a>
                         </td>
                     </tr>
                 {% endfor %}
                 </tbody>
             </table>
         {%  endif %}
+        <div>
+            <a href="{{ path('app_paintings') }}" class="btn btn-outline-dark my-4 mx-2">Retour aux oeuvres</a>
+        </div>
     </main>
+
 
 {% endblock %}

@@ -9,19 +9,19 @@
                 <h2 class="display-5 my-5">Le journal de la galerie</h2>
                 {% for article in articles %}
                     <div class="card">
-                        <h5 class="card-header text-lg-center py-3 ">{{ article.name|capitalize }}</h5>
+                        <h5 class="card-header lead fs-3 text-lg-center py-3 ">{{ article.name|capitalize }}</h5>
                         <div class="card-body row">
-                            <div class="col-2">
+                            <div class="col-md-3">
                                 <img src="{{ asset('img/articles/') ~ article.imageName }}" alt="{{ article.name }}">
                             </div>
-                            <div class="col-8 mx-5">
-                                <p class="card-text lead">{{ article.description }}</p>
+                            <div class="col-md-7 mx-5">
+                                <p class=" desc card-text lead">{{ article.description }}</p>
                                 <div class="text-end pt-5 pb-2">
-                                    <a class="btn mt-5 px-3 py-1 btn-primary btn-sm" href="{{ path('app_article', {slug: article.slug}) }}">Lire plus</a>
+                                    <a class="btn my-5 px-3 py-1 btn-primary btn-sm" href="{{ path('app_article', {slug: article.slug}) }}">Lire plus</a>
                                 </div>
                             </div>
                         </div>
-                        <div class="card-footer text-muted">
+                        <div class="card-footer text-muted lead fs-5">
                             Créée le : {{ article.createdAt|date('d/m/Y') }}
                         </div>
                     </div>

@@ -12,6 +12,12 @@ body {
   color: $black;
 }
 
+.msg-flash {
+.toast-header {
+background-color: $primary-color
+}
+}
+
 p {
   font-size: 1.2rem;
 }
@@ -166,8 +172,12 @@ h5 {
         height: auto;
       }
       .btn {
+        margin: 0 5px;
         &:active {
           background-color: darken($primary-color, 10%);
+        }
+        &:hover {
+          color: $secondary-color;
         }
       }
     }
@@ -221,9 +231,8 @@ h5 {
   }
 }
 
-
 // Journal de la galerie
-.container-articles {
+.container-articles, .container-artists {
   .card-header {
     font-size: 1.4rem;
     background-color: lighten($primary-color, 25%);
@@ -232,15 +241,30 @@ h5 {
     background-color: lighten($primary-color, 25%);
   }
   .card {
+    img {
+      width: 130%;
+    }
     margin: 4rem 0;
+    .desc {
+        margin-left: 3rem;
+    }
     .btn {
       &:active {
         background-color: darken($primary-color, 10%);
       }
     }
   }
-  img {
-    width: 130%;
+}
+
+// Artist
+.container-artist {
+  .card {
+    .paint {
+      color: $primary-color;
+    }
+    .btn {
+      margin-top: 3rem;
+    }
   }
 }
 
@@ -315,6 +339,38 @@ nav {
  }
 
 
+// WishList
+.container-wishlist, .container-cart {
+  th, td {
+    text-align: left;
+  }
+    th {
+    font-size: 1.3rem;
+    text-transform: uppercase;
+      padding-bottom: 1.5rem;
+      color: $primary-color;
+  }
+  td {
+    font-size: 1.2rem;
+    padding-top: 2.5rem;
+    .btn {
+     margin-right: 1.5rem;
+      font-size: 1.2rem;
+      padding: .5rem;
+      i {
+        font-size: 1.5rem;
+      }
+    }
+  }
+}
+
+// Panier
+.container-cart {
+  
+  a {
+    margin-left: 3.5rem;
+  }
+}
 
 // Admin
 // vue générale
