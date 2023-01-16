@@ -25,6 +25,8 @@ class CartController extends AbstractController
         // récupération des infos du panier + infos du produit (id)
         foreach ($panier as $id => $quantity) {
             $painting = $repository->find($id);
+
+
             $dataPanier[] = [
                 'painting' => $painting,
                 'quantity' => $quantity

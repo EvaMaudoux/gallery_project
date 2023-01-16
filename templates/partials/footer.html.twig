@@ -6,6 +6,11 @@
             <li class="nav-item"><a href="{{ path('app_articles') }}">notre journal</a></li>
             <li class="nav-item"><a href="{{ path('app_about') }}" class="px-2">à propos de nous</a></li>
             <li class="nav-item"><a href="{{ path('app_team') }}" class="px-2">notre équipe</a></li>
+            {% if is_granted('ROLE_USER') %}
+                <li class="nav-item">
+                    <a href="{{ path('app_contact') }}">Contactez-nous</a>
+                </li>
+            {% endif %}
         </ul>
         <p class="text-center pb-4"> Galerie Maudoux, depuis 1995.</p>
         <div class="media text-center ">

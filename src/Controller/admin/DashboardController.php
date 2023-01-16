@@ -51,6 +51,7 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::section('Utilisateurs', 'fa-solid fa-user');
         yield MenuItem::subMenu('Actions', 'fas fa-bars')->setSubItems([
              MenuItem::linkToCrud('Voir les utilisateurs', 'fa-solid fa-eye', User::class),
+             MenuItem::linkToCrud('Voir les utilisateurs', 'fa-solid fa-eye', User::class),
         ]);
 
         // Section paintings

@@ -1,0 +1,32 @@
+{% apply inline_css %}
+    <style>
+        h1 {
+            color: #d2634d;
+            font-size: 1.4rem;
+            margin-bottom: 1.3rem;
+        }
+
+        h4 {
+            color: #743b30;
+            font-size: 1.2rem;
+        }
+
+        div {
+            color: rgba(21, 4, 4, 0.87);
+            font-size: 1.1rem;
+        }
+    </style>
+{% endapply %}
+
+<h1>Demande de :
+    {{ lastName }} {{ firstName }}</h1>
+<h4>Sujet : </h4>
+<div>
+    {{ title }}
+</div>
+<h4>Message :</h4>
+<div>
+    {{ message | raw}}
+</div>
+
+
