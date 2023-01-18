@@ -43,8 +43,7 @@ class PaintingType extends AbstractType
                 'class' => Technical::class,
                 'choice_label'  => 'name',
                 'placeholder' => 'Sélectionnez...',
-            ])
-        ;
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

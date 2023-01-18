@@ -13,6 +13,11 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class CartController extends AbstractController
 {
+    /** Affichage du panier d'achats (quantité toujours à 1 car tableaux uniques)
+     * @param SessionInterface $session
+     * @param PaintingRepository $repository
+     * @return Response
+     */
     #[Route('/cart', name: 'app_cart')]
     public function cart(SessionInterface $session, PaintingRepository $repository): Response
     {
@@ -42,6 +47,11 @@ class CartController extends AbstractController
     }
 
 
+    /** Ajouter un tableau au panier
+     * @param Painting $painting
+     * @param SessionInterface $session
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     */
     #[Route('/cart/add/{id}', name: 'app_cart_add')]
     public function addCart(Painting $painting, SessionInterface $session)
     {
@@ -67,6 +77,11 @@ class CartController extends AbstractController
     }
 
 
+    /** Supprimer un tableau du panier
+     * @param Painting $painting
+     * @param SessionInterface $session
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     */
     #[Route('/cart/del/{id}', name: 'app_cart_del')]
     public function delCart(Painting $painting, SessionInterface $session)
     {
@@ -83,12 +98,17 @@ class CartController extends AbstractController
 
         $this->addFlash(
             'info',
-            'Le tableau a bien été retiré du panier!'
+            'Le tableau a bien été supprimé du panier!'
         );
 
         return $this->redirectToRoute('app_cart');
     }
 
+
+    /** Supprimer TOUS les tableaux du panier
+     * @param SessionInterface $session
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     */
     #[Route('/cart/delAll/', name: 'app_cart_delAll')]
     public function delAll(SessionInterface $session)
     {

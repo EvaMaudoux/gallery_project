@@ -43,14 +43,14 @@ class UserFixtures extends Fixture
         // Admin Eva Maudoux
         $user = new User();
         $user   ->setFirstName('Eva')
-            ->setLastName('Maudoux')
-            ->setEmail('eva.maudoux@gmail.com')
-            ->setImageName('25f.jpg')
-            ->setPassword($this->hasher->hashPassword($user, 'password'))
-            ->setCreatedAt(new \DateTimeImmutable())
-            ->setUpdatedAt(new \DateTimeImmutable())
-            ->setIsDisabled(false)
-            ->setRoles(['ROLE_ADMIN']);
+                ->setLastName('Maudoux')
+                ->setEmail('eva.maudoux@gmail.com')
+                ->setImageName('25f.jpg')
+                ->setPassword($this->hasher->hashPassword($user, 'password'))
+                ->setCreatedAt(new \DateTimeImmutable())
+                ->setUpdatedAt(new \DateTimeImmutable())
+                ->setIsDisabled(false)
+                ->setRoles(['ROLE_ADMIN']);
         $manager->persist($user);
         $manager->flush();
 
@@ -58,14 +58,14 @@ class UserFixtures extends Fixture
         // Super_Admin Pat Mar
         $user = new User();
         $user   ->setFirstName('Pat')
-            ->setLastName('Mar')
-            ->setEmail('patmar@gmail.com')
-            ->setImageName('patmar.jpg')
-            ->setPassword($this->hasher->hashPassword($user, 'password'))
-            ->setCreatedAt(new \DateTimeImmutable())
-            ->setUpdatedAt(new \DateTimeImmutable())
-            ->setIsDisabled(false)
-            ->setRoles(['ROLE_SUPER_ADMIN']);
+                ->setLastName('Mar')
+                ->setEmail('patmar@gmail.com')
+                ->setImageName('patmar.jpg')
+                ->setPassword($this->hasher->hashPassword($user, 'password'))
+                ->setCreatedAt(new \DateTimeImmutable())
+                ->setUpdatedAt(new \DateTimeImmutable())
+                ->setIsDisabled(false)
+                ->setRoles(['ROLE_SUPER_ADMIN']);
         $manager->persist($user);
         $manager->flush();
     }

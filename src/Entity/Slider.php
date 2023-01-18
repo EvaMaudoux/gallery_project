@@ -59,7 +59,7 @@ class Slider
         return $this->isSelected;
     }
 
-    public function setIsSelected(bool $isDisabled): self
+    public function setIsSelected(?bool $isDisabled): self
     {
         $this->isSelected = $isDisabled;
 

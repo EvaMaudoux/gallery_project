@@ -55,6 +55,12 @@ a:hover {
 .navbar .navbar-nav .nav-item a:hover {
   color: #cfa477;
 }
+.navbar .d-flex .dropdown-menu a:hover {
+  background-color: #f0e3d5;
+}
+.navbar .d-flex .dropdown-menu a:active {
+  background-color: #dcbd9d;
+}
 .navbar .d-flex .btn, .navbar .d-flex #paintings-gallery .controls-filter .btn, #paintings-gallery .controls-filter .navbar .d-flex .btn {
   font-size: 1rem;
   color: #feebde;
@@ -179,7 +185,7 @@ a:hover {
   background-color: #c28b51;
 }
 #detail #tabContent h4 {
-  font-size: 1.6rem;
+  font-size: 1.4rem;
   font-weight: lighter;
   color: #cfa477;
 }
@@ -189,13 +195,17 @@ a:hover {
 #detail #tabContent img {
   width: 90%;
 }
+#detail #comments h4 {
+  color: #1a1e21;
+}
 #detail #comments > .btn {
   padding: 0.4rem;
-  margin-left: 1rem;
+  margin-right: 1rem;
 }
 #detail #comments > .btn:active {
   background-color: #c28b51;
 }
+
 .container-articles .card-header, .container-artists .card-header {
   font-size: 1.4rem;
   background-color: #f0e3d5;
@@ -271,11 +281,21 @@ nav .img-user {
 .container-profile {
   margin-top: 8rem;
 }
+.container-profile h2 {
+  color: #cfa477;
+}
 .container-profile img {
   width: 75%;
   border-radius: 50%;
 }
+.container-profile .btn, .container-profile #paintings-gallery .controls-filter .btn, #paintings-gallery .controls-filter .container-profile .btn {
+  margin-top: 1.6rem;
+  margin-right: 1rem;
+}
 
+.container-wishlist .btn:active, .container-wishlist #paintings-gallery .controls-filter .btn:active, #paintings-gallery .controls-filter .container-wishlist .btn:active, .container-cart .btn:active, .container-cart #paintings-gallery .controls-filter .btn:active, #paintings-gallery .controls-filter .container-cart .btn:active {
+  background-color: #c28b51;
+}
 .container-wishlist th, .container-wishlist td, .container-cart th, .container-cart td {
   text-align: left;
 }
@@ -293,6 +313,9 @@ nav .img-user {
   margin-right: 1.5rem;
   font-size: 1.2rem;
   padding: 0.5rem;
+}
+.container-wishlist td .btn:active, .container-wishlist td #paintings-gallery .controls-filter .btn:active, #paintings-gallery .controls-filter .container-wishlist td .btn:active, .container-cart td .btn:active, .container-cart td #paintings-gallery .controls-filter .btn:active, #paintings-gallery .controls-filter .container-cart td .btn:active {
+  background-color: #c28b51;
 }
 .container-wishlist td .btn i, .container-wishlist td #paintings-gallery .controls-filter .btn i, #paintings-gallery .controls-filter .container-wishlist td .btn i, .container-cart td .btn i, .container-cart td #paintings-gallery .controls-filter .btn i, #paintings-gallery .controls-filter .container-cart td .btn i {
   font-size: 1.5rem;

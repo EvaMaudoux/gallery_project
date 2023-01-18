@@ -32,6 +32,9 @@ class Comment
     #[ORM\ManyToOne(inversedBy: 'comments')]
     private ?User $user = null;
 
+    #[ORM\Column]
+    private ?bool $isPublished = null;
+
 
     public function getId(): ?int
     {
@@ -90,5 +93,17 @@ class Comment
     public function __toString(): string
     {
         return $this->title;
+    }
+
+    public function isIsPublished(): ?bool
+    {
+        return $this->isPublished;
+    }
+
+    public function setIsPublished(bool $isPublished): self
+    {
+        $this->isPublished = $isPublished;
+
+        return $this;
     }
 }

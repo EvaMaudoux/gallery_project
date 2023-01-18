@@ -13,6 +13,12 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class ContactController extends AbstractController
 {
+    /** fonction de contact d'un utilisateur à l'admin (MailTrap)
+     * @param MailerInterface $mailer
+     * @param Request $request
+     * @return Response
+     * @throws \Symfony\Component\Mailer\Exception\TransportExceptionInterface
+     */
     #[Route('contact', name : 'app_contact')]
     public function contact(MailerInterface $mailer, Request $request): Response
     {

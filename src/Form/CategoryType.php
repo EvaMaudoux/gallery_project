@@ -19,8 +19,7 @@ class CategoryType extends AbstractType
             ])
             ->add('submit', SubmitType::class, [
                 'label' => 'Nouvelle catégorie'
-            ])
-        ;
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

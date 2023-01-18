@@ -40,7 +40,7 @@ class ArticleCrudController extends AbstractCrudController
     }
 
 
-    /** Méthode du CrudAbstractControl pour persister la date de création + le slug
+    /** Méthode du CrudAbstractController pour persister la date de création + le slug
      * @param EntityManagerInterface $em
      * @param $entityInstance
      * @return void

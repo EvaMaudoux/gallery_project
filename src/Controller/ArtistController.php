@@ -13,7 +13,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class ArtistController extends AbstractController
 {
-    /**
+    /** Afficher tous les artistes
      * @param ArtistRepository $artistRepository
      * @param PaintingRepository $paintingRepository
      * @param PaginatorInterface $paginator
@@ -44,7 +44,7 @@ class ArtistController extends AbstractController
         ]);
    }
 
-    /**
+    /** Afficher en détail un seul article
      * @param Artist $artist
      * @return Response
      */

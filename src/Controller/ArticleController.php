@@ -12,7 +12,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class ArticleController extends AbstractController
 {
-    /**
+    /** Afficher tous les articles
      * @param ArticleRepository $articleRepository
      * @param PaginatorInterface $paginator
      * @param Request $request
@@ -37,7 +37,7 @@ class ArticleController extends AbstractController
     }
 
 
-    /**
+    /** Afficher les détails d'un seul article
      * @param Article $article
      * @return Response
      */

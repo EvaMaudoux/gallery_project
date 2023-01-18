@@ -19,8 +19,7 @@ class TechnicalType extends AbstractType
             ])
             ->add('submit', SubmitType::class, [
                 'label' => 'Nouvelle technique'
-            ])
-        ;
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

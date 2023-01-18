@@ -8,7 +8,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class PageController extends AbstractController
 {
-    /**
+    /** Page about
      * @return Response
      */
     #[Route('/about', name: 'app_about')]
@@ -17,7 +17,7 @@ class PageController extends AbstractController
         return $this->render('page/about.html.twig');
     }
 
-    /**
+    /** Page team
      * @return Response
      */
     #[Route('/team', name: 'app_team')]

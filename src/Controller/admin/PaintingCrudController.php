@@ -56,7 +56,7 @@ class PaintingCrudController extends AbstractCrudController
             TextEditorField::new('fullDescription', 'Description complète')
                 ->hideOnIndex()
                 ->setRequired(false),
-            MoneyField::new('price', 'prix')->setCurrency('EUR'),
+            MoneyField::new('price', 'prix')->setCurrency('EUR')->setStoredAsCents(false),
             DateField::new('created', 'Création'),
         ];
     }

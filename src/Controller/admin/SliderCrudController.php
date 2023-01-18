@@ -19,14 +19,6 @@ class SliderCrudController extends AbstractCrudController
         return Slider::class;
     }
 
-    public function configureActions(Actions $actions): Actions
-    {
-        return $actions
-
-            ->disable(Action::EDIT)
-            ;
-    }
-
     public function configureCrud(Crud $crud): Crud
     {
         return $crud
@@ -41,10 +33,15 @@ class SliderCrudController extends AbstractCrudController
             ImageField::new('imageName', 'Image du slider')
                 ->setBasePath('img/slider')
                 ->setUploadDir('public/img/slider'),
-            BooleanField::new('isSelected', 'image du slider active')
+            BooleanField::new('isSelected', 'image du slider active'),
         ];
     }
 
+    /**
+     * @param EntityManagerInterface $em
+     * @param $entityInstance
+     * @return void
+     */
     public function persistEntity(EntityManagerInterface $em, $entityInstance): void
     {
         if(!$entityInstance instanceof Slider) return;

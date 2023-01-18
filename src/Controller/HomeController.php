@@ -12,7 +12,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class HomeController extends AbstractController
 {
-    /**
+    /** Page d'accueil
      * @param PaintingRepository $paintingRepository
      * @param CategoryRepository $categoryRepository
      * @param ArticleRepository $articleRepository

@@ -27,7 +27,7 @@ class UserCrudController extends AbstractCrudController
     {
         return $actions
 
-            ->disable(Action::NEW, Action::DELETE, Action::EDIT)
+            ->disable(Action::NEW, Action::DELETE)
             ;
     }
 
@@ -41,7 +41,6 @@ class UserCrudController extends AbstractCrudController
             ->setDefaultSort(['lastName' => 'ASC']);
     }
 
-    // Affichage des différents champs
     public function configureFields(string $pageName): iterable
     {
         return [
@@ -54,10 +53,11 @@ class UserCrudController extends AbstractCrudController
             TextField::new('lastName', 'Nom')
                 ->setFormTypeOption('disabled', 'disabled'),
             EmailField::new('email', 'Email')
-                ->hideOnForm(),
+                ->setFormTypeOption('disabled', 'disabled'),
             DateTimeField::new('createdAt', 'Inscription')
                 ->hideOnForm(),
-            ArrayField::new('likes', 'Tableaux aimés par l\'utilisateur'),
+            ArrayField::new('likes', 'Tableaux aimés par l\'utilisateur')
+                ->hideOnForm(),
             ArrayField::new('roles', 'Rôle'),
         ];
     }

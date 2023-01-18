@@ -20,7 +20,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class PaintingController extends AbstractController
 {
-    /**
+    /** Afficher toutes les peintures
      * @param CategoryRepository $categoryRepository
      * @param PaintingRepository $paintingRepository
      * @return Response
@@ -44,7 +44,7 @@ class PaintingController extends AbstractController
     }
 
 
-    /**
+    /** Afficher les détails d'une seule peinture
      * @param Painting $painting
      * @param CommentRepository $commentRepository
      * @param Request $request
@@ -83,7 +83,7 @@ class PaintingController extends AbstractController
         ]);
     }
 
-    /** Permet de liker ou déliker une peinture
+    /** Permet de liker ou déliker une peinture sur la gallerie (ajax)
      * @param Painting $painting
      * @param EntityManagerInterface $manager
      * @param PaintingLikeRepository $likeRepository
@@ -131,6 +131,27 @@ class PaintingController extends AbstractController
         ], 200);
     }
 
+
+    /** Affichage de la liste des favoris de l'user
+     * @param PaintingRepository $repository
+     * @return Response
+     */
+    #[Route('/wishlist', name: 'app_wishlist')]
+    public function paintingsLiked (PaintingRepository $repository) {
+        $user = $this->getUser();
+
+        $paintings = $repository->findLikedByUser($user);
+        return $this->render('user/wishlist.html.twig', [
+            'paintingsLiked' => $paintings,
+        ]);
+    }
+
+    /** Permet de supprimer un like dans la page wishlist
+     * @param Painting $painting
+     * @param EntityManagerInterface $manager
+     * @param PaintingLikeRepository $likeRepository
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     */
     #[Route('/painting/{id}/delLike', name: 'app_painting_delLike')]
     public function delLike (Painting $painting, EntityManagerInterface $manager, PaintingLikeRepository $likeRepository)
     {
@@ -152,15 +173,5 @@ class PaintingController extends AbstractController
             );
         }
         return $this->redirectToRoute('app_wishlist');
-    }
-
-    #[Route('/wishlist', name: 'app_wishlist')]
-    public function paintingsLiked (PaintingRepository $repository) {
-        $user = $this->getUser();
-
-        $paintings = $repository->findLikedByUser($user);
-        return $this->render('user/wishlist.html.twig', [
-            'paintingsLiked' => $paintings,
-        ]);
     }
 }

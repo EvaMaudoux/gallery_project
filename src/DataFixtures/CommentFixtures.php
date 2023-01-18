@@ -24,6 +24,7 @@ class CommentFixtures extends Fixture implements DependentFixtureInterface
             $title = $faker->words(2, true);
             $comment->setTitle($title)
                     ->setContent($faker->paragraphs(1, true))
+                    ->setIsPublished($faker->boolean(90))
                     ->setPainting($painting[$faker->numberBetween(0,count($painting)-1)])
                     ->setUser($users [$faker->numberBetween(0, (count($users) -1))]);
 

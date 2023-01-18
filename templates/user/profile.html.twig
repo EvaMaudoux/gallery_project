@@ -9,18 +9,18 @@
                 <img src="img/user/{{ app.user.imageName }}" alt="{{ app.user.firstName }} {{ app.user.lastName }}">
             </div>
             <div class="info col-md-8">
-                <h2>{{ app.user.firstName }} {{ app.user.lastName }}</h2>
-                <p>Votre Email: {{ app.user.email }}</p>
-                <p>Création du compte: {{ app.user.createdAt|date('d/m/Y') }}</p>
-                <p>Mise à jour du compte: {{ app.user.updatedAt|date('d/m/Y') }}<p>
-                <p>Status:
+                <h2 class="lead fs-1 py-3">{{ app.user.firstName }} {{ app.user.lastName }}</h2>
+                <p>Adresse email : {{ app.user.email }}</p>
+                <p>Création du compte : {{ app.user.createdAt|date('d/m/Y') }}</p>
+                <p>Rôle :
                     {% for role in app.user.roles %}
                         {{ role | capitalize | replace({'_': ' '}) }}
+                        /
                     {% endfor %}
                 </p>
                 <div class="my-3">
-                    <a href="{{ path('app_edit_profile') }}" class="btn btn-dark">Modifier mon profil</a>
-                    <a href="{{ path('app_edit_profile') }}" class="btn btn-dark">Modifier mon mot de passe</a>
+                    <a href="{{ path('app_edit_profile') }}" class="btn btn-dark ">Modifier mon profil</a>
+                    <a href="{{ path('app_wishlist') }}" class="btn btn-outline-dark">Mes favoris</a>
                 </div>
             </div>
         </div>

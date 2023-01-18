@@ -28,9 +28,8 @@ class DashboardController extends AbstractDashboardController
     }
 
     #[Route('/admin', name: 'app_admin')]
-    public function index(): Response
+    public function admin(): Response
     {
-        // urlGenetarot va générer la route correpondant  au peintureCrud
         $url = $this->adminUrlGenerator
             ->setController(PaintingCrudController::class)
             ->generateUrl();
@@ -48,11 +47,12 @@ class DashboardController extends AbstractDashboardController
     public function configureMenuItems(): iterable
     {
         // Section users
+        if ($this->isGranted('ROLE_SUPER_ADMIN')) {
         yield MenuItem::section('Utilisateurs', 'fa-solid fa-user');
         yield MenuItem::subMenu('Actions', 'fas fa-bars')->setSubItems([
              MenuItem::linkToCrud('Voir les utilisateurs', 'fa-solid fa-eye', User::class),
-             MenuItem::linkToCrud('Voir les utilisateurs', 'fa-solid fa-eye', User::class),
         ]);
+        }
 
         // Section paintings
         yield MenuItem::section('Tableaux', 'fa-solid fa-palette');

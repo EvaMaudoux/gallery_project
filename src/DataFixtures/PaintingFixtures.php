@@ -37,7 +37,7 @@ class PaintingFixtures extends Fixture implements DependentFixtureInterface
             $title = $faker->words(2, true);
             $date = $faker->dateTimeBetween('-400 year', 'now');
             $painting   ->setTitle($title)
-                        ->setSmallDescription($faker->words(8,true) . '.')
+                        ->setSmallDescription($faker->words(7,true) . '.')
                         ->setFullDescription($faker->paragraphs(3,true))
                         ->setCreated(new \DateTimeImmutable(date_format($date, "d-m-Y")))
                         ->setHeight($this->heights[$faker->numberBetween(0, $nbHeight - 1)])

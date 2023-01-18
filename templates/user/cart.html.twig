@@ -6,7 +6,7 @@
 
     <main class="container-cart offset-2 my-5">
         {% if dataPanier is empty %}
-            <h4 class="lead fs-3 py-3" >Votre panier est actuellement vide</h4>
+            <h4 class="lead fs-3 py-3" >Votre panier est actuellement vide... <i class="fa-regular fa-face-sad-tear"></i></h4>
         {% else %}
             <table class="table">
                 <thead>
@@ -27,14 +27,14 @@
                         <td class="text-end">{{ (element.quantity * element.painting.price) | format_currency('EUR', locale='fr') }}</td>
                         <td>
                             <a href="{{path("app_cart_del", {id: element.painting.id})}}" class="btn btn-danger">
-                                <i class="icofont-ui-delete"></i>
+                                <i class="fa-regular fa-trash-can"></i>
                             </a>
                         </td>
                     </tr>
 
                 {% else %} {# si le tableau est vide #}
                     <tr>
-                        <td colspan="5" class="text-center">Votre panier est vide</td>
+                        <td colspan="5" class="text-center">Votre panier est vide ... <i class="fa-regular fa-face-sad-tear"></i></td>
                     </tr>
                 {% endfor %}
                 </tbody>
@@ -44,7 +44,7 @@
                     <td class="text-end">{{ total | format_currency('EUR', locale='fr')}}</td>
                     <td>
                         <a href="{{path("app_cart_delAll")}}" class="btn btn-danger">
-                            <i class="icofont-ui-delete"></i>
+                            <i class="fa-solid fa-trash"></i>
                         </a>
                     </td>
                 </tr>

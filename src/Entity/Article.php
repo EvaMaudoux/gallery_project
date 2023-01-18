@@ -136,4 +136,9 @@ class Article
 {
     return $this->name;
 }
+
+    public function isIsPublished(): ?bool
+    {
+        return $this->isPublished;
+    }
 }
