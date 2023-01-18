@@ -23,16 +23,16 @@ class CartController extends AbstractController
         $total = 0;
 
         // récupération des infos du panier + infos du produit (id)
-        foreach ($panier as $id => $quantity) {
-            $painting = $repository->find($id);
-
-
-            $dataPanier[] = [
-                'painting' => $painting,
-                'quantity' => $quantity
-            ];
-            $total += ($painting->getPrice()) * $quantity;
-    }
+        if (!empty($panier)) {
+            foreach ($panier as $id => $quantity) {
+                $painting = $repository->find($id);
+                $dataPanier[] = [
+                    'painting' => $painting,
+                    'quantity' => 1,
+                ];
+                $total += $painting->getPrice();
+            }
+        }
 
         return $this->render('user/cart.html.twig', [
             'dataPanier' => $dataPanier,
@@ -49,6 +49,12 @@ class CartController extends AbstractController
         $panier = $session->get('panier', []);
         $id = $painting->getId();
 
+        if (!empty($panier[$id])) {
+            $panier[$id]++;
+        } else {
+            $panier[$id] = 1;
+        }
+
         // sauvegarde des données du nouveau panier dans la session
         $session->set('panier', $panier);
 
@@ -57,8 +63,7 @@ class CartController extends AbstractController
             'Le tableau a bien été ajouté du panier!'
         );
 
-        // dd($session);
-        return $this->redirectToRoute('app_paintings');
+        return $this->redirectToRoute('app_cart');
     }
 
 
@@ -75,6 +80,7 @@ class CartController extends AbstractController
 
         // sauvegarde des données du nouveau panier dans la session
         $session->set('panier', $panier);
+
         $this->addFlash(
             'info',
             'Le tableau a bien été retiré du panier!'
@@ -88,6 +94,11 @@ class CartController extends AbstractController
     {
         // récupération des données contenues dans le panier actuel
         $session->remove('panier');
+
+        $this->addFlash(
+            'info',
+            'Les tableaux ont bien été supprimés du panier!'
+        );
 
         return $this->redirectToRoute('app_cart');
     }

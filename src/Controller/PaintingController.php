@@ -131,6 +131,29 @@ class PaintingController extends AbstractController
         ], 200);
     }
 
+    #[Route('/painting/{id}/delLike', name: 'app_painting_delLike')]
+    public function delLike (Painting $painting, EntityManagerInterface $manager, PaintingLikeRepository $likeRepository)
+    {
+        $user = $this->getUser();
+
+        // Si la peinture est likée par cet user
+        if ($painting->isLikedByUser($user)) {
+            $like = $likeRepository->findOneBy([
+                'painting' => $painting,
+                'user' => $user,
+            ]);
+
+            $manager->remove($like);
+            $manager->flush();
+
+            $this->addFlash(
+                'info',
+                'Le tableau a bien été supprimé de votre wishlist. ',
+            );
+        }
+        return $this->redirectToRoute('app_wishlist');
+    }
+
     #[Route('/wishlist', name: 'app_wishlist')]
     public function paintingsLiked (PaintingRepository $repository) {
         $user = $this->getUser();

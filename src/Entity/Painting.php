@@ -77,6 +77,7 @@ class Painting
     private ?Technical $technical = null;
 
     #[ORM\OneToMany(mappedBy: 'painting', targetEntity: Comment::class)]
+    #[ORM\JoinColumn(onDelete: 'CASCADE')]
     private Collection $comment;
 
     #[ORM\ManyToOne(inversedBy: 'paintings')]
@@ -87,6 +88,7 @@ class Painting
     private ?int $price = null;
 
     #[ORM\OneToMany(mappedBy: 'painting', targetEntity: PaintingLike::class)]
+    #[ORM\JoinColumn(onDelete: 'CASCADE')]
     private Collection $likes;
 
     #[ORM\Column]

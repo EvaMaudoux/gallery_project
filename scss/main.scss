@@ -210,11 +210,11 @@ h5 {
   }
   #tabContent {
     h4 {
-      font-size: 1.8rem;
+      font-size: 1.6rem;
       font-weight: lighter;
       color: $primary-color;
     }
-    button, label {
+    button {
       font-size: 1.2rem;
     }
     img {
@@ -223,9 +223,14 @@ h5 {
   }
   // Commentaires
   #comments {
-      button {
+      > .btn {
+        padding: .4rem;
+        margin-left: 1rem;
         &:active {
           background-color: darken($primary-color, 10%);
+        }
+        a {
+
         }
       }
   }
@@ -366,7 +371,7 @@ nav {
 
 // Panier
 .container-cart {
-  
+
   a {
     margin-left: 3.5rem;
   }

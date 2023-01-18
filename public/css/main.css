@@ -179,20 +179,23 @@ a:hover {
   background-color: #c28b51;
 }
 #detail #tabContent h4 {
-  font-size: 1.8rem;
+  font-size: 1.6rem;
   font-weight: lighter;
   color: #cfa477;
 }
-#detail #tabContent button, #detail #tabContent label {
+#detail #tabContent button {
   font-size: 1.2rem;
 }
 #detail #tabContent img {
   width: 90%;
 }
-#detail #comments button:active {
+#detail #comments > .btn {
+  padding: 0.4rem;
+  margin-left: 1rem;
+}
+#detail #comments > .btn:active {
   background-color: #c28b51;
 }
-
 .container-articles .card-header, .container-artists .card-header {
   font-size: 1.4rem;
   background-color: #f0e3d5;

@@ -19,6 +19,7 @@ class Category
     private ?string $name = null;
 
     #[ORM\OneToMany(mappedBy: 'category', targetEntity: Painting::class)]
+    #[ORM\JoinColumn(onDelete: 'CASCADE')]
     private Collection $paintings;
 
     public function __construct()

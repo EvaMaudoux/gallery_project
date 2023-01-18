@@ -14,6 +14,7 @@ class PaintingLike
     private ?int $id = null;
 
     #[ORM\ManyToOne(inversedBy: 'likes')]
+    #[ORM\JoinColumn(onDelete: 'CASCADE')]
     private ?Painting $painting = null;
 
     #[ORM\ManyToOne(inversedBy: 'likes')]

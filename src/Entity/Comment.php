@@ -26,6 +26,7 @@ class Comment
     private ?string $content = null;
 
     #[ORM\ManyToOne(inversedBy: 'comment')]
+    #[ORM\JoinColumn(onDelete: 'CASCADE')]
     private ?Painting $painting = null;
 
     #[ORM\ManyToOne(inversedBy: 'comments')]

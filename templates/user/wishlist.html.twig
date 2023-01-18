@@ -6,7 +6,7 @@
 
     <main class="container-wishlist offset-2 my-5">
         {% if paintingsLiked is empty %}
-            <h4>Vous n'aimez aucun peinture pour le moment ... <i class="fa-solid fa-heart-crack"></i></h4>
+            <h4 class="lead fs-3 py-3">Vous n'aimez aucune peinture pour le moment  <i class="fa-solid fa-heart-crack"></i></h4>
         {% else %}
             <table class="table">
                 <thead>
@@ -26,6 +26,7 @@
                         <td class="col-2">{{ painting.artist.lastName | capitalize }} {{ painting.artist.firstName | capitalize }}</td>
                         <td class="col-2">{{painting.price | format_currency('EUR', locale='fr') }}</td>
                         <td class="col-3"><a class="btn btn-secondary btn-sm" href="{{ path('app_painting', {slug: painting.slug}) }}">Voir</a>
+                            <a href="{{ path('app_painting_delLike', {'id': painting.id}) }}" type="button" class="btn btn-outline-dark btn-sm"><i class="fa-solid fa-heart-crack"></i></a>
                             <a href="{{ path('app_cart_add', {'id': painting.id}) }}" type="button" class="btn btn-outline-dark btn-sm"><i class="icofont-shopping-cart"></i></a>
                         </td>
                     </tr>
