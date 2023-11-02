@@ -2,7 +2,7 @@
 Création d'un site web dynamique sur une galerie d'art en ligne, appelée "Galerie Maudoux". Il propose une collection des plus célèbres peintures. Les utilisateurs peuvent naviguer à travers les époques et acheter leur tableau préféré. 
 
 ## Contexte de création du site
-Site créé dans le cadre de ma formation end éveloppement web, pour le cours d'utilisation du framework Symfony. 
+Site créé dans le cadre de ma formation end éveloppement web, pour le cours d'utilisation du framework Symfony. Plus précisément, c'était le proijet d'examend e mon cours de framework POO. 
 
 
 # Controllers
